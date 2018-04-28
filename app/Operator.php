@@ -13,5 +13,12 @@ class Operator extends Model
 
 
     protected $fillable = ['name','cac','registered_name','registration_date','active'];
-
+	
+	public static function getOperatorByType($type){
+        $types = Operator::pluck('name','id');;
+        if($type=2){
+            return $types[$type];
+        }
+        return [1=>"Laswa"];
+    }
 }

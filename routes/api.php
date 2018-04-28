@@ -42,29 +42,8 @@ Route::group([
 Route::group([
     'prefix'=>'util'
 ], function(){
-    Route::get('/get_regions', function(){
-        return Returns::ok(\App\Core\ProjectAttributes::getRegions());
-    });
-    Route::get('/get_states', function(){
-        return Returns::ok(\App\Core\ProjectAttributes::getStates());
-    });
-    Route::get('/get_states_by_region', function(Request $request){
-        return Returns::ok(\App\Core\ProjectAttributes::getStatesByRegion($request->query('region')));
-    });
-    Route::get('/get_region_by_state', function(Request $request){
-        return Returns::ok(\App\Core\ProjectAttributes::getRegionsByState($request->query('state')));
-    });
-    Route::get('/get_project_status', function(){
-        return Returns::ok(\App\Core\ProjectAttributes::getStatus());
-    });
-    Route::get('/get_project_types', function(){
-        return Returns::ok(\App\Core\ProjectAttributes::getTypes());
-    });
-    Route::get('/get_offices', function(){
-        return Returns::ok(\App\Office::select('id', 'name')->get());
-    });
-    Route::get('/get_regions_map_states', function(){
-        return Returns::ok(\App\Core\ProjectAttributes::getRegionsWithState());
-    });
-
+    Route::get('/get_operator_by_jetty_type', function(Request $request){
+        return Returns::ok(\App\Operator\getOperatorByType($request->query('jetty_type')));
+    })->name('api.operator.jetty');
+   
 });
