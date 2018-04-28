@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOperatorsTable extends Migration
 {
-	use Uuids;
     /**
      * Run the migrations.
      *

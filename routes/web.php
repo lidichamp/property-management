@@ -52,6 +52,14 @@ Route::group([
         Route::get('/manage/{id?}', 'Dashboard\JettysController@manage')->name('jetty.manage');
         Route::post('/add_update/{id?}', 'Dashboard\JettysController@jetty_save')->name('jetty.save');
     });
+	
+	 Route::group([
+        'prefix'=>'operator',
+    ], function(){
+        Route::get('/home', 'Dashboard\OperatorsController@index')->name('operator.home');
+        Route::get('/manage/{id?}', 'Dashboard\OperatorsController@manage')->name('operator.manage');
+        Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
+    });
     Route::group([
         'prefix'=>'users',
     ], function(){

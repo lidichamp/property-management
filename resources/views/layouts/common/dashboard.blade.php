@@ -139,6 +139,7 @@
                 <ul class="nav top-menu">
                     <li class="nav-item {{ str_contains(request()->path(), 'dashboard/boat')?'active':'' }}"><a class="nav-link" href="{{ route('boat.home') }}">Boats</a></li>
                    <li class="nav-item {{ str_contains(request()->path(), 'dashboard/jetty')?'active':'' }}"><a class="nav-link" href="{{ route('jetty.home') }}">Jetties</a></li>
+                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/jetty')?'active':'' }}"><a class="nav-link" href="{{ route('operator.home') }}">Operators</a></li>
                    
                 </ul>
             </header>
