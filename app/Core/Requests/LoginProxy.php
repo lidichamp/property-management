@@ -74,7 +74,7 @@ class LoginProxy
         try {
             //Helpers::logDNA($data);
             $response = $this->apiConsumer->post('/oauth/token', $data);
-
+			//dd($response);
             if (!$response->isSuccessful()) {
                 return Returns::validationError(['password'=>'Access denied. Check credentials']);
                 //throw new InvalidCredentialsException();

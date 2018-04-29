@@ -35,7 +35,7 @@ class AuthController extends Controller
     }
 
     public function get(Request $request){
-        return response()->json(collect($request->user())->only(['name', 'email', 'office', 'role', 'picture', 'created_at'])->toArray());
+        return response()->json(collect($request->user())->only(['name', 'email', 'operator', 'jome_jetty','role', 'picture', 'created_at'])->toArray());
     }
 
     public function refresh(Request $request){
