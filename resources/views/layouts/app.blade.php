@@ -58,6 +58,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/all.js') }}"></script>
+    <script src="{{ asset('js/lodash.min.js') }}"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/extras/loadingoverlay_progress/loadingoverlay_progress.min.js"></script>
+    <script>
+        function setHeader(xhr) {
+            xhr.setRequestHeader('Content-Type', 'application/json');
+        }
+    </script>
     @stack('scripts')
 </body>
 </html>

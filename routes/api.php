@@ -43,7 +43,7 @@ Route::group([
     'prefix'=>'util'
 ], function(){
     Route::get('/get_operator_by_jetty_type', function(Request $request){
-        return Returns::ok(\App\Operator\getOperatorByType($request->query('jetty_type')));
+        return Returns::ok(\App\Operator::getOperatorByType($request->query('jetty_type')));
     })->name('api.operator.jetty');
    
 });

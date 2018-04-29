@@ -49,13 +49,13 @@
                            
 							<div class="form-group form-group--float">
                                 <label>Jetty Type</label><br />
-                                {!! Form::select('jetty_type', \App\Jetty::getTypes(), $boat?$jetty->jetty_type:null, ['placeholder'=>'Choose a jetty type ','class'=>'select2','id'=>'jetty_type']) !!}
+                                {!! Form::select('jetty_type', \App\Jetty::getTypes(), $jetty?$jetty->jetty_type:null, ['placeholder'=>'Choose a jetty type ','class'=>'select2','id'=>'jetty_type']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							
 							<div class="form-group form-group--float">
                                 <label>Operator</label><br />
-                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
+                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR'],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
 								<i class="form-group__bar"></i>
                             </div>
                             <div class="card-block center-block text-center align-content-center">
@@ -112,9 +112,10 @@
         $(document).ready(function(){
             $('#jetty_type').change(function(ev){
                 var type = $(this).val();
+				
                 $.LoadingOverlay("show");
                 $.ajax({
-                    url: "{{ route('api.operator.jetty) }}"+"?jetty_type="+type,
+                    url: "{{ route('api.operator.jetty') }}"+"?jetty_type="+type,
                     type: 'GET',
                     dataType: 'json',
                     data: {},
@@ -122,7 +123,7 @@
                     success: function(data){
                         var dropdown_data = "<option value='UNKNOWN'>UNKNOWN OPERATOR</option>";
                         _.each(data.data, function(value, key){
-                            dropdown_data+="<option value='"+value+"'>"+value+"</options>";
+                            dropdown_data+="<option value='"+key+"'>"+value+"</options>";
                         });
                         $('#operator-select').html(dropdown_data);
                         $.LoadingOverlay("hide");
@@ -131,4 +132,5 @@
             });
         });
     </script>
+	
 @endpush

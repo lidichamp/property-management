@@ -15,10 +15,17 @@ class Operator extends Model
     protected $fillable = ['name','cac','registered_name','registration_date','active'];
 	
 	public static function getOperatorByType($type){
-        $types = Operator::pluck('name','id');;
-        if($type=2){
-            return $types[$type];
+       
+        if($type==1){
+			$types = Operator::pluck('name','id')->toArray();
+            return $types;
         }
-        return [1=>"Laswa"];
+		elseif($type==2){
+			$types = Operator::where('name','laswa')->pluck('name','id')->toArray();
+			return $types;
     }
+	else{
+		return "Invalid";
+	}
+}
 }
