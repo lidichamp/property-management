@@ -1,4 +1,4 @@
-@extends('dashboard.boat.layout')
+@extends('dashboard.operator.layout')
     @section('sub-body')
         <div class="row">
             <div class="col-sm-4">
