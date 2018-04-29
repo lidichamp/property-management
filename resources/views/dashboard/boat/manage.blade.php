@@ -9,7 +9,7 @@
                     </div>
 
                     <div class="card-block">
-                        {!! Form::open(['route'=>['boat.save', $boat?$boat->id:null]]) !!}
+                        {!! Form::open(['route'=>['operator.add.boat', $boat?$boat->id:null]]) !!}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -56,9 +56,16 @@
                                 {!! Form::select('home_jetty', \App\Jetty::getJetty(), $boat?$boat->home_jetty:null, ['placeholder'=>' ','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
+							
+                            <div class="form-group form-group--float">
+                                {!! Form::hidden('operator', $operator?$operator->id:null) !!}
+                               
+                                <i class="form-group__bar"></i>
+                            </div>
                             <div class="card-block center-block text-center align-content-center">
                                 <input type="submit" value="Add /Edit Boat" class="btn btn-default waves-effect" />
                             </div>
+							
                             @if($boat)
                                 <p class="text-right">This boat is currently <strong>{{ $boat->active?'Active':'Disabled' }}</strong></p>
                                 <hr>

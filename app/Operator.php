@@ -17,8 +17,7 @@ class Operator extends Model
 	public static function getOperatorByType($type){
        
         if($type==1){
-			$types = Operator::pluck('name','id')->toArray();
-            return $types;
+			static::getOperators();
         }
 		elseif($type==2){
 			$types = Operator::where('name','laswa')->pluck('name','id')->toArray();
@@ -28,4 +27,10 @@ class Operator extends Model
 		return "Invalid";
 	}
 }
+	public static function getOperators()
+	{
+		
+			$types = Operator::pluck('name','id')->toArray();
+            return $types;
+	}
 }
