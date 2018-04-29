@@ -137,10 +137,15 @@
 
                 </ul>
                 <ul class="nav top-menu">
-                    <li class="nav-item {{ str_contains(request()->path(), 'dashboard/boat')?'active':'' }}"><a class="nav-link" href="{{ route('boat.home') }}">Boats</a></li>
+					
+				@if(Auth::user()->role == 1)
+                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/boat')?'active':'' }}"><a class="nav-link" href="{{ route('boat.home') }}">Boats</a></li>
                    <li class="nav-item {{ str_contains(request()->path(), 'dashboard/jetty')?'active':'' }}"><a class="nav-link" href="{{ route('jetty.home') }}">Jetties</a></li>
-                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/jetty')?'active':'' }}"><a class="nav-link" href="{{ route('operator.home') }}">Operators</a></li>
-                   
+                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/operator')?'active':'' }}"><a class="nav-link" href="{{ route('operator.home') }}">Operators</a></li>
+                @else
+				   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/operator/administration')?'active':'' }}"><a class="nav-link" href="{{ route('operator.dashboard',Auth::user()->operator) }}">Dashboard</a></li>
+				   <li class="nav-item {{ str_contains(request()->path(), '/manage_boat')?'active':'' }}"><a class="nav-link" href="{{ route('operator.assign.boat',Auth::user()->operator) }}">Boats</a></li>
+                @endif	
                 </ul>
             </header>
 

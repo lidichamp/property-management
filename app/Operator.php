@@ -17,7 +17,8 @@ class Operator extends Model
 	public static function getOperatorByType($type){
        
         if($type==1){
-			static::getOperators();
+			$types = Operator::pluck('name','id')->toArray();
+            return $types;
         }
 		elseif($type==2){
 			$types = Operator::where('name','laswa')->pluck('name','id')->toArray();

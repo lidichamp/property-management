@@ -29,7 +29,7 @@ class Jetty extends Model
         $this->attributes['location'] = DB::raw("POINT($value)");
     }
 	public static function getJetty(){
-        $jetties = Jetty::pluck('name','id');
+        $jetties =Jetty::pluck('name','id');
 		return $jetties;
     }
     public function getLocationAttribute($value){

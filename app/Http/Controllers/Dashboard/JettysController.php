@@ -45,6 +45,8 @@ class JettysController extends Controller
 	 public function jetty_save(Request $request, $id=null){
         $validatedData = $request->validate([
             'name'=>'required|max:150',
+			'jetty_type'=>'required',
+			'operator'=>'required',
             'address'=>'string|nullable',
             'latitude'=>'string|nullable',
 			'longitude'=>'string|nullable'
@@ -57,6 +59,8 @@ class JettysController extends Controller
                 $jetty->address = $validatedData['address'];
                 $jetty->latitude = $validatedData['latitude'];
                 $jetty->longitude = $validatedData['longitude'];
+				$jetty->operator=$validatedData['operator'];
+				$jetty->jetty_type=$validatedData['jetty_type'];
                 $jetty->save();
             }
             else{

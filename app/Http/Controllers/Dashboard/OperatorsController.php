@@ -10,6 +10,8 @@ use App\Boat;
 use App\Http\Controllers\Controller;
 use App\DataTables\OperatorDataTable;
 use App\DataTables\BoatDataTable;
+use DB;
+use Charts;
 class OperatorsController extends Controller
 {
      public function index(Request $request, $id=null){
@@ -115,6 +117,27 @@ class OperatorsController extends Controller
         }
 
         return redirect(route('operator.manage'))->withInput(['success'=>true]);
+    }
+	
+	
+	  public function dashboard($id){
+		  $values = Boat::select('jetties.name as jetties', DB::raw('count(home_jetty) AS boats'))
+		->leftJoin('jetties','boats.home_jetty','jetties.id')
+		->where('boats.operator',$id)
+		->groupBy('home_jetty')
+		->get();
+        $operator=Operator::find($id);
+		$chart = Charts::create('bar', 'highcharts')
+        ->title($operator->name .' boats grouped by their home jetties')
+        ->elementLabel('Boats')
+        ->labels($values->pluck('jetties'))
+        ->values($values->pluck('boats'))
+        ->responsive(false);
+        return view('dashboard.operator.dashboard', [
+            'page_title'=>$operator->name .' Dashboard',
+			'id'=>$id,
+			'chart'=>$chart
+        ]);
     }
 
 		

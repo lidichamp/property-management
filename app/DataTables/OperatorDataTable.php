@@ -19,7 +19,7 @@ class OperatorDataTable extends DataTable
             ->addColumn('action', function($one){
                 $menu = '<a href="'.route('operator.manage', $one->id).'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
 				
-                $menu .= '<a href="'.route('operator.manage', $one->id).'" title="Manage" style="margin-right: 10px"><i class="zmdi zmdi-open-in-browser text-success"></i></a>';
+                $menu .= '<a href="'.route('operator.dashboard', $one->id).'" title="Dashboard" style="margin-right: 10px"><i class="zmdi zmdi-open-in-browser text-success"></i></a>';
                 return $menu;
             })
             ->setRowClass(function($one){
