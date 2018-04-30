@@ -19,7 +19,7 @@ class JettyController extends Controller
 	}
 
 	public function get_by_operator(Request $request, $operator){
-		$jetties = User::where('operator', $operator)->get();
+		$jetties = Jetty::where('operator', $operator)->get();
 		return Response::json(Returns::ok($jetties));
 	}
 	public function get(Request $request, $id)

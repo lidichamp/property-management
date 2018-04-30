@@ -9,7 +9,7 @@ use App\Jetty;
 use App\Boat;
 use App\Http\Controllers\Controller;
 use App\DataTables\OperatorDataTable;
-use App\DataTables\BoatDataTable;
+use App\DataTables\BoatOperatorDataTable;
 use DB;
 use Charts;
 class OperatorsController extends Controller
@@ -74,7 +74,7 @@ class OperatorsController extends Controller
         return redirect(route('operator.manage'))->withInput(['success'=>true]);
     }
 	
-	  public function manage_boat(BoatDataTable $dataTable,$operator_id,$id=null){
+	  public function manage_boat(BoatOperatorDataTable $dataTable,$operator_id,$id=null){
         if (request()->ajax()) {
             return $dataTable->ajax();
         }
