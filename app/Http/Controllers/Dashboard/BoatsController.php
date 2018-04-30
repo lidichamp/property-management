@@ -8,6 +8,7 @@ use App\User;
 use App\Jetty;
 use App\Http\Controllers\Controller;
 use App\DataTables\BoatDataTable;
+use App\DataTables\BoatOperatorDataTable;
 class BoatsController extends Controller
 {
      public function index(Request $request, $id=null){
@@ -32,7 +33,7 @@ class BoatsController extends Controller
         ]);
 
     }
-	  public function manage(BoatDataTable $dataTable, $id=null){
+	  public function manage(BoatOperatorDataTable $dataTable, $id=null){
         if (request()->ajax()) {
             return $dataTable->ajax();
         }

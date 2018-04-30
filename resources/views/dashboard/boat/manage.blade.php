@@ -1,7 +1,7 @@
 @extends('dashboard.operator.layout')
     @section('sub-body')
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Add/Edit A Boat</h2>
@@ -22,7 +22,8 @@
                             @if(old('success'))
                                 <div class="alert alert-success text-center">Request was Successful</div>
                             @endif
-
+							<div class="row">
+							<div class="col-sm-6">
                             <div class="form-group form-group--float">
                                 {!! Form::text('name', $boat?$boat->name:null, ['class'=>'form-control']) !!}
                                 <label>Name</label>
@@ -39,6 +40,8 @@
                                 <label>Registration Number</label>
                                 <i class="form-group__bar"></i>
                             </div>
+							</div>
+							<div class="col-sm-6">
                             <div class="form-group form-group--float">
                                 {!! Form::number('capacity', $boat?$boat->capacity:null, ['class'=>'form-control']) !!}
                                 <label>Capacity</label>
@@ -62,6 +65,8 @@
                                
                                 <i class="form-group__bar"></i>
                             </div>
+							</div>
+							</div>
                             <div class="card-block center-block text-center align-content-center">
                                 <input type="submit" value="Add /Edit Boat" class="btn btn-default waves-effect" />
                             </div>
@@ -76,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
                     {{--<div class="card-header">--}}
                         {{--<h2 class="card-title">Manage Offices</h2>--}}
