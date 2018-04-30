@@ -1,13 +1,13 @@
 @extends('dashboard.operator.layout')
     @section('sub-body')
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Add/Edit An Operator</h2>
                         <small class="card-subtitle"></small>
                     </div>
-
+					
                     <div class="card-block">
                         {!! Form::open(['route'=>['operator.save', $operator?$operator->id:null]]) !!}
                             @if ($errors->any())
@@ -22,18 +22,23 @@
                             @if(old('success'))
                                 <div class="alert alert-success text-center">Request was Successful</div>
                             @endif
-
+							<div class="row">
+							<div class="col-sm-5">
                             <div class="form-group form-group--float">
                                 {!! Form::text('name', $operator?$operator->name:null, ['class'=>'form-control']) !!}
                                 <label>Name</label>
                                 <i class="form-group__bar"></i>
                             </div>
+							<br>
                             <div class="form-group form-group--float">
                                 {!! Form::text('cac', $operator?$operator->cac:null, ['class'=>'form-control']) !!}
-                                <label>CAC Registration Number</label>
+                                <label>Registration Number</label>
                                 <i class="form-group__bar"></i>
                             </div>
-							
+							</div>
+							<div class="col-sm-1">
+							</div>
+							<div class="col-sm-5">
                             <div class="form-group form-group--float">
                                 {!! Form::text('registered_name', $operator?$operator->registered_name:null, ['class'=>'form-control']) !!}
                                 <label>Registered Name</label>
@@ -46,9 +51,11 @@
                                
                                 <i class="form-group__bar"></i>
                             </div>
+							</div>
                             <div class="card-block center-block text-center align-content-center">
                                 <input type="submit" value="Add /Edit operator" class="btn btn-default waves-effect" />
                             </div>
+							</div>
                             @if($operator)
                                 <p class="text-right">This operator is currently <strong>{{ $operator->active?'Active':'Disabled' }}</strong></p>
                                 <hr>
@@ -59,9 +66,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
-
+					
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Manage Operators</h2>
+                        <small class="card-subtitle"></small>
+                    </div>
                     <div class="card-block">
                         <div class="table-responsive">
                             {!! $dataTable->table() !!}

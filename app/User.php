@@ -15,6 +15,8 @@ class User extends Authenticatable
     public static $OPERATOR_ADMIN = 2;
     public static $ASSITANT_ROLE = 3;
     public static $BOAT_MEN_ROLE = 4;
+	public static $BOAT_SAILOR_ROLE = 5;
+	public static $LASWA_ADMIN=6;
     public static $NO_ROLE = 0;
 
     /**
@@ -40,7 +42,9 @@ class User extends Authenticatable
             0=>'NO ROLE',
             2=>'OPERATOR ADMIN',
             3=>'ASSITANT',
-            4=>'BOAT MAN'
+            4=>'BOAT MAN',
+			5=>'SAILOR',
+			6=>'LASWA'
         ];
     }
 

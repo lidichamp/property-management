@@ -31,8 +31,8 @@ Route::group([
 ], function(){
     Route::get('/all', 'Api\UserController@get_all')->middleware('scope:monitor');
     Route::get('/get/{id}', 'Api\UserController@get')->middleware('scope:monitor');
-    Route::post('/home_jetty/{home_jetty}', 'Api\UserController@get_by_home_jetty')->middleware('scope:monitor');
-    Route::post('/operator/{operator}', 'Api\UserController@get_by_operator')->middleware('scope:monitor');
+    Route::get('/home_jetty/{home_jetty}', 'Api\UserController@get_by_home_jetty')->middleware('scope:monitor');
+    Route::get('/operator/{operator}', 'Api\UserController@get_by_operator')->middleware('scope:monitor');
 });
 
 Route::group([
@@ -41,8 +41,8 @@ Route::group([
 ], function(){
     Route::get('/all', 'Api\BoatController@get_all')->middleware('scope:monitor');
     Route::get('/get/{id}', 'Api\BoatController@get')->middleware('scope:monitor');
-    Route::post('/home_jetty/{home_jetty}', 'Api\BoatController@get_by_home_jetty')->middleware('scope:monitor');
-    Route::post('/operator/{operator}', 'Api\BoatController@get_by_operator')->middleware('scope:monitor');
+    Route::get('/home_jetty/{home_jetty}', 'Api\BoatController@get_by_home_jetty')->middleware('scope:monitor');
+    Route::get('/operator/{operator}', 'Api\BoatController@get_by_operator')->middleware('scope:monitor');
 });
 
 Route::group([
