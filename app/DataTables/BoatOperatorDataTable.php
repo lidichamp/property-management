@@ -17,7 +17,7 @@ class BoatOperatorDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($one){
-                $menu = '<a href="/manage_boat/'.$one->operator_id.'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
+                $menu = '<a href="/manage_boat/'.request()->route('operator_id').'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
               
                 return $menu;
             })
@@ -37,14 +37,14 @@ class BoatOperatorDataTable extends DataTable
      * @param \App\Boat $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Boat $model,$id)
-    {
+    public function query(Boat $model)
+    { ;
         return $model->newQuery()->select([
-            'boats.id','boats.name','boats.active', 'boats.make as model','manufacturing_date','registration_id','capacity','jetties.name as home_jetty','operators.name as operator','operators.id as operator_id'
+            'boats.id','boats.name','boats.active', 'boats.make as model','manufacturing_date','registration_id','capacity','jetties.name as home_jetty','operators.name as operator'
         ])
         ->leftJoin('jetties', 'boats.home_jetty', 'jetties.id')
 		->leftJoin('operators', 'boats.operator', 'operators.id')
-        ->where('operators.id', '=', $id);
+        ->where('operators.id',request()->route('operator_id'));
     }
 
     /**

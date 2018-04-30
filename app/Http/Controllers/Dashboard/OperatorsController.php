@@ -74,12 +74,12 @@ class OperatorsController extends Controller
         return redirect(route('operator.manage'))->withInput(['success'=>true]);
     }
 	
-	  public function manage_boat(BoatOperatorDataTable $dataTable,$operator_id,$id=null){
-        if (request()->ajax()) {
+	  public function manage_boat(BoatOperatorDataTable $dataTable,$operator,$id=null){
+		if (request()->ajax()) {
             return $dataTable->ajax();
         }
-        return $dataTable->render('dashboard.boat.manage', [
-			'operator'=>Operator::find($operator_id),
+        return $dataTable->with('operator_id',$operator)->render('dashboard.boat.manage', [
+			'operator'=>Operator::find($operator),
             'page_title'=>'Assign a boat to:',
           //  'offices'=> Helpers::getOfficesKeyValue(),
             'boat'=> $id?Boat::find($id):null
@@ -116,7 +116,7 @@ class OperatorsController extends Controller
             Boat::create($validatedData);
         }
 
-        return redirect(route('operator.manage'))->withInput(['success'=>true]);
+        return redirect(route('operator.assign.boat'))->withInput(['success'=>true]);
     }
 	
 	

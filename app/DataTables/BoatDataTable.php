@@ -34,7 +34,7 @@ class BoatDataTable extends DataTable
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Boat $model)
-    {
+    {	
         return $model->newQuery()->select([
             'boats.id','boats.name','boats.active', 'boats.make as model','manufacturing_date','registration_id','capacity','jetties.name as home_jetty','operators.name as operator'
         ])

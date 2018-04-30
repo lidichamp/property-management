@@ -20,5 +20,9 @@ class Boat extends Model
 
     protected $fillable = ['name','make','manufacturing_date','registration_id','capacity','home_jetty','operator'];
 
+	public static function getBoat(){
+        $boats =Boat::pluck('name','id');
+		return $boats;
+    }
 
 }
