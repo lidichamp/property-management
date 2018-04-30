@@ -20,7 +20,7 @@ class UserController extends Controller
 
 	public function get_by_home_jetty(Request $request, $home_jetty){
 		$users = User::whereIn('home_jetty', $home_jetty)->get();
-		return Response::json(Returns::ok($users);
+		return Response::json(Returns::ok($users));
 	}
 	public function get_by_operator(Request $request, $operator){
 		$users = User::whereIn('operator', $operator)->get();
