@@ -26,17 +26,23 @@ Route::group([
 });
 
 Route::group([
-    'prefix'=>'projects',
+    'prefix'=>'users',
     'middleware'=>['auth:api']
 ], function(){
-    Route::post('/find', 'Api\ProjectController@all')->middleware('scope:monitor,evaluate');
-    Route::get('/get/{id}', 'Api\ProjectController@one')->middleware('scope:monitor,evaluate');
-    Route::post('/{id}/evaluate/{eval_id?}', 'Api\ProjectController@evaluate')->middleware('scope:evaluate');
-    Route::post('/{id}/monitor', 'Api\ProjectController@monitor')->middleware('scope:monitor');
-    Route::get('/{id}/monitor', 'Api\ProjectController@get_monitor')->middleware('scope:monitor,evaluate');
-    Route::get('/{id}/evaluate', 'Api\ProjectController@get_evaluate')->middleware('scope:monitor,evaluate');
-    Route::get('/monitor/{monitor_id}', 'Api\ProjectController@get_a_monitor')->middleware('scope:monitor,evaluate');
-    Route::get('/{id}/history', 'Api\ProjectController@get_history')->middleware('scope:monitor,evaluate');
+    Route::get('/find', 'Api\UserController@get_all')->middleware('scope:monitor');
+    Route::get('/get/{id}', 'Api\UserController@get')->middleware('scope:monitor');
+    Route::post('/home_jetty/{home_jetty}', 'Api\UserController@get_by_home_jetty')->middleware('scope:monitor');
+    Route::post('/operator/{operator}', 'Api\UserController@get_by_operator')->middleware('scope:monitor');
+});
+
+Route::group([
+    'prefix'=>'boat',
+    'middleware'=>['auth:api']
+], function(){
+    Route::get('/find', 'Api\BoatController@get_all')->middleware('scope:monitor');
+    Route::get('/get/{id}', 'Api\BoatController@get')->middleware('scope:monitor');
+    Route::post('/home_jetty/{home_jetty}', 'Api\BoatController@get_by_home_jetty')->middleware('scope:monitor');
+    Route::post('/operator/{operator}', 'Api\BoatController@get_by_operator')->middleware('scope:monitor');
 });
 
 Route::group([

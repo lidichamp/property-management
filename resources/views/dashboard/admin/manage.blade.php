@@ -2,7 +2,9 @@
 
     @section('sub-body')
         <div class="row">
-            <div class="col-sm-6">
+		<div class="col-sm-1">
+		</div>
+            <div class="col-sm-7">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Invite/Edit User</h2>
@@ -75,18 +77,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    {{--<div class="card-header">--}}
-                        {{--<h2 class="card-title">Manage Offices</h2>--}}
-                        {{--<small class="card-subtitle"></small>--}}
-                    {{--</div>--}}
-
-                    <div class="card-block">
-                        <div class="table-responsive">
-                            {!! $dataTable->table() !!}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
