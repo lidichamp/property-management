@@ -1,7 +1,7 @@
 @extends('dashboard.jetty.layout')
     @section('sub-body')
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Add/Edit A Jetty</h2>
@@ -22,13 +22,24 @@
                             @if(old('success'))
                                 <div class="alert alert-success text-center">Request was Successful</div>
                             @endif
-
+							
+        <div class="row">
+            <div class="col-sm-6">
                             <div class="form-group form-group--float">
-                                {!! Form::text('name', $jetty?$jetty->name:null, ['class'=>'form-control']) !!}
+                                {!! Form::text('name', $jetty?$jetty->name:null, ['placeholder'=>' ','class'=>'form-control']) !!}
                                 <label>Name</label>
                                 <i class="form-group__bar"></i>
+								
                             </div>
-                            <div class="form-group form-group--float">
+							<div class="form-group form-group--float">
+                                <label>Operator</label><br/>
+                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR'],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
+								<i class="form-group__bar"></i>
+                            </div>
+                            
+                           </div>
+						   <div class="col-sm-6">
+						   <div class="form-group form-group--float">
 							<label>Address</label>
 							<br>
                                 {!! Form::text('address', $jetty?$jetty->address:null, ['class'=>'form-control','autocomplete'=>'on' ,'runat'=>'server','id'=>'address']) !!}
@@ -46,18 +57,15 @@
                                 
                                 <i class="form-group__bar"></i>
                             </div>
-                           
 							<div class="form-group form-group--float">
                                 <label>Jetty Type</label><br />
                                 {!! Form::select('jetty_type', \App\Jetty::getTypes(), $jetty?$jetty->jetty_type:null, ['placeholder'=>'Choose a jetty type ','class'=>'select2','id'=>'jetty_type']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							
-							<div class="form-group form-group--float">
-                                <label>Operator</label><br />
-                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR'],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
-								<i class="form-group__bar"></i>
-                            </div>
+							
+							</div>
+							</div>
                             <div class="card-block center-block text-center align-content-center">
                                 <input type="submit" value="Add /Edit Jetty" class="btn btn-default waves-effect" />
                             </div>
@@ -65,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
 
                     <div class="card-block">

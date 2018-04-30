@@ -44,6 +44,7 @@ Route::group([
         Route::get('/home', 'Dashboard\BoatsController@index')->name('boat.home');
         Route::get('/manage/{id?}', 'Dashboard\BoatsController@manage')->name('boat.manage');
         Route::post('/add_update/{id?}', 'Dashboard\BoatsController@boat_save')->name('boat.save');
+		Route::get('/table','Dashboard\BoatsController@table')->name('boat.table');
     });
 	 Route::group([
         'prefix'=>'jetty',

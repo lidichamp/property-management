@@ -42,6 +42,14 @@ class BoatsController extends Controller
             'boat'=> $id?Boat::find($id):null
         ]);
     }
+	 public function table(BoatDataTable $dataTable, $id=null){
+        if (request()->ajax()) {
+            return $dataTable->ajax();
+        }
+        return $dataTable->render('dashboard.boat.table', [
+            'page_title'=>'All Boats Management'
+        ]);
+    }
 	 public function boat_save(Request $request, $id=null){
         $validatedData = $request->validate([
             'name'=>'required|max:150',

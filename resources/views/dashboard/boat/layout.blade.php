@@ -14,7 +14,7 @@
 
             <ul class="navigation">
                 <li class="{{ str_contains(request()->path(), 'home')?'navigation__active':'' }}"><a href="{{ route('boat.home') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
-                <li class="{{ str_contains(request()->path(), 'manage')?'navigation__active':'' }}"><a href="{{ route('boat.manage') }}"><i class="zmdi zmdi-storage"></i> Manage</a></li>
+                <li class="{{ str_contains(request()->path(), 'table')?'navigation__active':'' }}"><a href="{{ route('boat.table')}}"><i class="zmdi zmdi-storage"></i> Manage</a></li>
             </ul>
 
         </div>

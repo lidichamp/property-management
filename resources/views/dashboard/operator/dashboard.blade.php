@@ -1,4 +1,4 @@
-@extends('dashboard.operator.layout')
+@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.operator_layout');
 @section('sub-body')
     <div class="row quick-stats">
         <div class="col-sm-6 col-md-4">
