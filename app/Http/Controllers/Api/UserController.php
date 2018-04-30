@@ -15,7 +15,7 @@ class UserController extends Controller
 	public function get_all()
 	{
 		$users=User::all();
-		return Response::json(Returns::ok($user));
+		return Response::json(Returns::ok($users));
 	}
 
 	public function get_by_home_jetty(Request $request, $home_jetty){
