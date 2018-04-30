@@ -46,6 +46,15 @@ Route::group([
 });
 
 Route::group([
+    'prefix'=>'jetty',
+    'middleware'=>['auth:api']
+], function(){
+    Route::get('/all', 'Api\JettyController@get_all')->middleware('scope:monitor');
+    Route::get('/get/{id}', 'Api\JettyController@get')->middleware('scope:monitor');
+    Route::get('/operator/{operator}', 'Api\JettyController@get_by_operator')->middleware('scope:monitor');
+});
+
+Route::group([
     'prefix'=>'util'
 ], function(){
     Route::get('/get_operator_by_jetty_type', function(Request $request){
