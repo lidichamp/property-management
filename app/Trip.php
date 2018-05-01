@@ -16,7 +16,7 @@ class Trip extends Model
 
     protected $dates = [ 'created_at', 'updated_at'];
 
-    protected $fillable = ['boat_id','departure_time','from_jetty','to_jetty','departure_type'];
+    protected $fillable = ['boat_id','creator','departure_time','from_jetty','to_jetty','departure_type'];
 
 
 }

@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-block">
-                        {!! Form::open(['route'=>['trip.create', $trip?$trip->id:null]]) !!}
+                        {!! Form::open(['route'=>['trip.home', $trip?$trip->id:null]]) !!}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -28,7 +28,7 @@
 
                             <div class="form-group form-group--float">
                                 <label>Depature Type</label><br />
-                                {!! Form::select('depature_type', ['Till_Full'=>'Depart When full','Exact_Depature_time'=>'Depart at Exact Time"], $trip?$trip->depature_type:null, ['placeholder'=>'choose a depature jetty ','class'=>'select2']) !!}
+                                {!! Form::select('depature_type', ['Depart When full','Depart at Exact Time'], $trip?$trip->depature_type:null,['placeholder'=>'choose a depature jetty ','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							<div class="form-group form-group--float">
@@ -51,7 +51,7 @@
 							
 							<div class="form-group form-group--float">
                                 <label>Depature Time</label><br />
-                                  {!! Form::datetime-local('depature_time', $trip?$trip->depature_time:null, ['class'=>'form-control']) !!}
+                                  {!! Form::date('depature_time', $trip?$trip->depature_time:null, ['class'=>'form-control']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
                             <div class="card-block center-block text-center align-content-center">
@@ -79,5 +79,5 @@
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
     <script src="/vendor/datatables/buttons.server-side.js"></script>
-    {!! $dataTable->scripts() !!}
+
 @endpush

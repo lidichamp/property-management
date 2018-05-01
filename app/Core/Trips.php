@@ -1,0 +1,84 @@
+<?php
+namespace App\Core;
+
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use App\Core\Returns;
+use App\Trip;
+use Response;
+use Validator;
+/*
+ * this class handles function related to trips
+ */
+class Trips{
+
+    public static function create(Request $request){
+        $payload = Helpers::remove_nulls($request->all());
+        return static::validates_and_exec($payload);
+    }
+
+ 
+    private static function validates_and_exec($payload){
+        $validate_array = [
+            'boat_id'=>'required|exists:boats,id',
+            'from_jetty'=>'required|exists:boats,id',
+			'creator'=>'required|exists:users,id',
+            'to_jetty'=>'required|exists:boats,id',
+            'depature_type'=>'required|string|in:Till_Full,Exact_Depature_time',
+            'delivery_date'=>'required|date',
+            'depature_time'=>'required'
+         ];
+        $validate = Validator::make($payload, $validate_array);
+        if($validate->fails()){
+            return Returns::validationError($validate->errors());
+        }
+        return static::validate_staff($payload);
+    }
+    
+    private static function validate_staff($payload){
+        foreach ($payload['staff'] as $index=>$value){
+            $validate_trip_staff = Validator::make($value, [
+            'staff_id'=>'required|exists:users,id',
+            if($validate_staff->fails()){
+                return Returns::validationError($validate_staff->errors()->merge(
+                    [
+                        'staff'=>($index+1)
+                    ]));
+            } 
+            return static::process_trip($payload);
+ 
+        }
+    }
+    
+    
+    private static function process_trip($payload){
+        //first insert into the trips table
+        $tripModel = new Trip();
+        $trip_staff_array = [];
+        $trip = Trip::create(collect($payload)->only($tripModel->getFillable())->toArray());
+        if($trip){
+            foreach ($payload['staff'] as $value){
+                $value['trip_id'] = $trip->id;
+                
+                }
+                //try and catch error for a rollback if error error
+                try{
+					//dd($value);
+                    array_push($trip_staff_array, Tripuser::create($value)->toArray());
+                }
+                catch(QueryException $ex){
+                    $trip->delete();
+                    return Returns::systemError($ex->getMessage());
+                }
+            }
+        
+        }
+        
+        return Returns::ok([
+            'trip'=> $trip,
+            'trip_staff'=> $trip_staff_array
+        ]);
+        
+    }
+}
+    

@@ -55,6 +55,14 @@ Route::group([
     });
 	
 	 Route::group([
+        'prefix'=>'trip',
+    ], function(){
+        Route::get('/create', 'Dashboard\TripController@index')->name('trip.home');
+        Route::get('/manage/{id?}', 'Dashboard\JettysController@manage')->name('jetty.manage');
+        Route::post('/add_update/{id?}', 'Dashboard\JettysController@jetty_save')->name('jetty.save');
+    });
+	
+	 Route::group([
         'prefix'=>'operator',
     ], function(){
         Route::get('/home', 'Dashboard\OperatorsController@index')->name('operator.home');

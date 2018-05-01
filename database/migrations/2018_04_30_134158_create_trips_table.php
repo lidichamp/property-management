@@ -15,10 +15,12 @@ class CreateTripsTable extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->uuid('id');
+			$table->uuid('creator');
 			$table->uuid('from_jetty');
 			$table->uuid('to_jetty');
 			$table->uuid('boat_id');
-			$table->enum('depature_type')->('Till_Full','Exact_Depature_time');
+			$table->integer('status');
+			$table->integer('depature_type');
 			$table->time('depature_time');
             $table->timestamps();
         });
