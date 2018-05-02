@@ -24,5 +24,9 @@ class Boat extends Model
         $boats =Boat::pluck('name','id');
 		return $boats;
     }
+	public static function getBoatByOperator($operator){
+        $boats =Boat::where('operator',$operator)->pluck('name','id');
+		return $boats;
+    }
 
 }

@@ -57,9 +57,9 @@ Route::group([
 	 Route::group([
         'prefix'=>'trip',
     ], function(){
-        Route::get('/create', 'Dashboard\TripController@index')->name('trip.home');
-        Route::get('/manage/{id?}', 'Dashboard\JettysController@manage')->name('jetty.manage');
-        Route::post('/add_update/{id?}', 'Dashboard\JettysController@jetty_save')->name('jetty.save');
+        Route::get('/create/{id}/{trip_id?}', 'Dashboard\TripController@index')->name('trip.home');
+      //  Route::get('/manage/{id?}', 'Dashboard\JettysController@createtrip_process')->name('trip.manage');
+        Route::post('/add_update/{id?}', 'Dashboard\TripController@createtrip_process')->name('trip.manage');
     });
 	
 	 Route::group([

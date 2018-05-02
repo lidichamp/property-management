@@ -1,4 +1,4 @@
-@extends(Auth::trip()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.layout');
+@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.operator_layout');
 
     @section('sub-body')
         <div class="row">
@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-block">
-                        {!! Form::open(['route'=>['trip.home', $trip?$trip->id:null]]) !!}
+                        {!! Form::open(['route'=>['trip.manage', $trip?$trip->id:null]]) !!}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -28,7 +28,7 @@
 
                             <div class="form-group form-group--float">
                                 <label>Depature Type</label><br />
-                                {!! Form::select('depature_type', ['Depart When full','Depart at Exact Time'], $trip?$trip->depature_type:null,['placeholder'=>'choose a depature jetty ','class'=>'select2']) !!}
+                                {!! Form::select('depature_type', ['Depart When full','Depart at Exact Time'], $trip?$trip->depature_type:null,['placeholder'=>'choose a depature type ','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							<div class="form-group form-group--float">
@@ -45,23 +45,25 @@
 							
                             <div class="form-group form-group--float">
                                 <label>Boat</label><br />
-                                {!! Form::select('boat', \App\Boat::getBoat(), $trip?$trip->boat:null, ['class'=>'select2']) !!}
+                                {!! Form::select('boat', \App\Boat::getBoatByOperator($operator), $trip?$trip->boat:null, ['placeholder'=>'choose a boat for the trip','class'=>'select2']) !!}
+                                <i class="form-group__bar"></i>
+                            </div>
+							
+							 <div class="form-group form-group--float">
+                                <label>Staff</label><br />
+                                {!! Form::select('staff[]', \App\User::getRoleandUser($operator), $trip?$trip->staff:null, ['class'=>'select2','multiple'=>true]) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							
 							<div class="form-group form-group--float">
                                 <label>Depature Time</label><br />
-                                  {!! Form::date('depature_time', $trip?$trip->depature_time:null, ['class'=>'form-control']) !!}
+                                  <input type='datetime-local' name="depature_time" id="depature_time" value="{Carbon\Carbon::now()}"class="form-control">
                                 <i class="form-group__bar"></i>
                             </div>
                             <div class="card-block center-block text-center align-content-center">
                                 <input type="submit" value="Invite/Update" class="btn btn-default waves-effect" />
                             </div>
-                            @if($trip)
-                                <p class="text-right">User access is currently <strong>{{ $trip->active?'Active':'Disabled' }}</strong></p>
-                                <hr>
-                                <p class="text-right text-danger"><a href="{{ route('admin.manage') }}" class="text-danger">cancel edit here</a></p>
-                            @endif
+                            
 
                         {!! Form::close() !!}
                     </div>
@@ -79,5 +81,12 @@
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
     <script src="/vendor/datatables/buttons.server-side.js"></script>
-
+	<script>
+	   <script>
+        $(document).ready(function(){
+            $('#depature_time')..datetimepicker({
+                locale: {
+                    format: 'DD/MM/YYYY HH:MM:SS'
+                }
+	</script>
 @endpush

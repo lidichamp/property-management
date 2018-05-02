@@ -11,7 +11,11 @@ use Response;
 use Validator;
 
 class TripController extends Controller
-{
+{    public function add(Request $request){
+        $request->merge(['user_id'=> collect($request->get('auth_data'))->get('user_id')]);
+        return Response::json(Trips::process_trip($request));
+    }
+    
 	public function get_all()
 	{
 		Trips::all();

@@ -10,15 +10,17 @@ use App\Core\Returns;
 class TripController extends Controller
 {
 
-     public static function index($id=null)
+     public static function index($id,$trip_id=null)
 	{
 		return view('dashboard.trip.manage', [
                 'page_title'=>'View Boats ',
-				'trip'=>Trip::find($id)]);
+				'operator'=>$id,
+				'trip'=>Trip::find($trip_id)]);
 	}
-    public function createtrip__process(Request $request, $id=null){
-        $request->merge(['user_id'=> $request->get('auth_data')->get('user_id')]);
+    public function createtrip_process(Request $request, $id=null){
+		 $request->merge(['user_id'=> \Auth::user()->id]);
         $process = collect(Trips::process_trip($request, $id));
+		
         if($process->get('code') == Returns::$ok_response){
             return back()->withInput(['success'=>true]);
         }

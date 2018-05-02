@@ -55,7 +55,18 @@ class User extends Authenticatable
         }
         return 'INVALID';
     }
-
+	public static function getRoleandUser($operator){
+       $users=User::where('operator',$operator)->get();
+	   $values=[];
+	   foreach ($users as $user)
+	   {
+		   $role=static::getRoleName($user->role);
+		   $value=$user->name.'( '.$role .')';
+		  array_push($values,$value);
+		
+	   }
+	   return $values;
+    }
     public function home_jetty(){
         return $this->hasOne('App\Jetty', 'id', 'jetty_id');
     }

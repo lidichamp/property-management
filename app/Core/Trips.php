@@ -38,7 +38,7 @@ class Trips{
     private static function validate_staff($payload){
         foreach ($payload['staff'] as $index=>$value){
             $validate_trip_staff = Validator::make($value, [
-            'staff_id'=>'required|exists:users,id',
+            'staff_id'=>'required|exists:users,id']);
             if($validate_staff->fails()){
                 return Returns::validationError($validate_staff->errors()->merge(
                     [
@@ -51,7 +51,7 @@ class Trips{
     }
     
     
-    private static function process_trip($payload){
+    public static function process_trip($payload){
         //first insert into the trips table
         $tripModel = new Trip();
         $trip_staff_array = [];
@@ -72,7 +72,7 @@ class Trips{
                 }
             }
         
-        }
+        
         
         return Returns::ok([
             'trip'=> $trip,
