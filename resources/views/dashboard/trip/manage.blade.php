@@ -28,7 +28,7 @@
 
                             <div class="form-group form-group--float">
                                 <label>Depature Type</label><br />
-                                {!! Form::select('depature_type', ['Depart When full','Depart at Exact Time'], $trip?$trip->depature_type:null,['placeholder'=>'choose a depature type ','class'=>'select2']) !!}
+                                {!! Form::select('depature_type', [1=>'Depart When full',2=>'Depart at Exact Time'], $trip?$trip->depature_type:null,['placeholder'=>'choose a depature type ','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							<div class="form-group form-group--float">
@@ -45,7 +45,7 @@
 							
                             <div class="form-group form-group--float">
                                 <label>Boat</label><br />
-                                {!! Form::select('boat', \App\Boat::getBoatByOperator($operator), $trip?$trip->boat:null, ['placeholder'=>'choose a boat for the trip','class'=>'select2']) !!}
+                                {!! Form::select('boat_id', \App\Boat::getBoatByOperator($operator), $trip?$trip->boat:null, ['placeholder'=>'choose a boat for the trip','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							
@@ -55,9 +55,11 @@
                                 <i class="form-group__bar"></i>
                             </div>
 							
+                                {!! Form::hidden('creator',Auth::user()->id) !!}
+                           
 							<div class="form-group form-group--float">
                                 <label>Depature Time</label><br />
-                                  <input type='datetime-local' name="depature_time" id="depature_time" value="{Carbon\Carbon::now()}"class="form-control">
+                                  <input type='datetime-local' name="depature_time" id="depature_time" value="{{Carbon\Carbon::now()}}"class="form-control">
                                 <i class="form-group__bar"></i>
                             </div>
                             <div class="card-block center-block text-center align-content-center">

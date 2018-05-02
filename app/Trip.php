@@ -18,5 +18,7 @@ class Trip extends Model
 
     protected $fillable = ['boat_id','creator','departure_time','from_jetty','to_jetty','departure_type'];
 
-
+    public function trip_staff(){
+        return $this->hasMany('\App\Trip_staff', 'trip_id', 'id');
+    }
 }

@@ -18,7 +18,7 @@ class CreateTripsTable extends Migration
 			$table->uuid('creator');
 			$table->uuid('from_jetty');
 			$table->uuid('to_jetty');
-			$table->uuid('boat_id');
+			$table->integer('boat_id');
 			$table->integer('status');
 			$table->integer('depature_type');
 			$table->time('depature_time');

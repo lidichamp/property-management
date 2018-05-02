@@ -7,6 +7,7 @@ use App\Core\Trips;
 use App\Trip;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
+use App\DataTables\TripDataTable;
 class TripController extends Controller
 {
 
@@ -16,6 +17,13 @@ class TripController extends Controller
                 'page_title'=>'View Boats ',
 				'operator'=>$id,
 				'trip'=>Trip::find($trip_id)]);
+	}
+     public static function manage(TripDataTable $dataTable,$operator)
+	{
+	if (request()->ajax()) {
+            return $dataTable->ajax();
+        }
+        return $dataTable->with('operator',$operator)->render('dashboard.trip.table');
 	}
     public function createtrip_process(Request $request, $id=null){
 		 $request->merge(['user_id'=> \Auth::user()->id]);

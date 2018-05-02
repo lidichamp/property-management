@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use App\Core\Helpers;
 
-class Tripuser extends Model
+class Trip_staff extends Model
 {
     
     use Uuids;

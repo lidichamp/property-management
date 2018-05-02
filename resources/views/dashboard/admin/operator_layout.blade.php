@@ -17,7 +17,13 @@
 				<li class="{{ str_contains(request()->path(), 'administration')?'navigation__active':'' }}" ><a href="{{ route('operator.dashboard',request()->route('id')) }}"><i class="zmdi zmdi-desktop-mac"></i> Dashboard</a></li>
 				<li class="{{ str_contains(request()->path(), 'manage_boat')?'navigation__active':'' }}"><a href="{{ route('operator.assign.boat',request()->route('id')) }}"> <i class="zmdi zmdi-boat"></i>Boats</a></li>
 				<li class="{{ str_contains(request()->path(), 'users/manage')?'navigation__active':'' }}"><a href="{{ route('admin.manage',request()->route('id')) }}"><i class="zmdi zmdi-accounts"></i> Staff</a></li>
-				<li class="{{ str_contains(request()->path(), 'trip')?'navigation__active':'' }}"><a href="{{ route('trip.home',request()->route('id')) }}"><i class="zmdi zmdi-swap"></i> Trips</a></li>
+				<li class="nav-item dropdown {{ str_contains(request()->path(), 'trip')?'navigation__active':'' }}">
+                            <a class="nav-link" href="" data-toggle="dropdown"><i class="zmdi zmdi-swap"></i> Trips</a>
+                            <div class="dropdown-menu">
+                                <a href="{{ route('trip.home',request()->route('id')) }}" class="dropdown-item">Add</a>
+                                <a href="{{ route('trip.overview',request()->route('id')) }}" class="dropdown-item">Manage</a>
+                            </div>
+                </li>
 			
 			</ul>
 			   <div class="user">

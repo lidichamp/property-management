@@ -57,12 +57,13 @@ class User extends Authenticatable
     }
 	public static function getRoleandUser($operator){
        $users=User::where('operator',$operator)->get();
-	   $values=[];
+		$values=[];
 	   foreach ($users as $user)
 	   {
 		   $role=static::getRoleName($user->role);
-		   $value=$user->name.'( '.$role .')';
-		  array_push($values,$value);
+		   $value=[$user->id=>$user->name.'( '.$role .')'];
+		   array_push($values,$value);
+		  
 		
 	   }
 	   return $values;

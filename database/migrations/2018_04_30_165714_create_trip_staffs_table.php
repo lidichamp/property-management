@@ -16,7 +16,7 @@ class CreateTripStaffsTable extends Migration
         Schema::create('trip_staffs', function (Blueprint $table) {
             $table->uuid('id');
 			$table->uuid('trip_id');
-			$table->uuid('staff_id');
+			$table->integer('staff_id');
             $table->timestamps();
         });
     }
