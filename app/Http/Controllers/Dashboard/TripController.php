@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Core\Trips;
 use App\Trip;
-use App\Passenger;
 use App\Trip_staff;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;

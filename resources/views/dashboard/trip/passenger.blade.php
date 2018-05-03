@@ -44,7 +44,11 @@
                                 <i class="form-group__bar"></i>
                             </div>
 							
-							
+							 <div class="form-group form-group--float">
+                                <label>Age Range</label><br />
+                                {!! Form::select('age_range', [1=>'under 10',2=>'10 to 20',3=>'above 20'], $passenger?$passenger->age_range:null,['class'=>'select2']) !!}
+                                <i class="form-group__bar"></i>
+                            </div>
                       
                             <div class="form-group form-group--float">
                                 {!! Form::text('phone', $passenger?$passenger->phone:null, ['class'=>'form-control']) !!}
@@ -53,7 +57,7 @@
                             </div>
 							
                             <div class="card-block center-block text-center align-content-center">
-                                <input type="submit" value="Invite/Update" class="btn btn-default waves-effect" />
+                                <input type="submit" value="Add to trip" class="btn btn-default waves-effect" />
                             </div>
                             
 							

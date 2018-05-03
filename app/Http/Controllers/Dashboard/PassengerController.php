@@ -11,7 +11,7 @@ use App\Trip_staff;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
 use App\DataTables\TripDataTable;
-class TripController extends Controller
+class PassengerController extends Controller
 {
 
     public static function index($trip_id,$id=null)

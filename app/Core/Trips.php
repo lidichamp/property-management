@@ -99,7 +99,7 @@ class Trips{
 
 		public static function get($id)
 	{
-		$trip=Trip::with('trip_staff')->find($id);
+		$trip=Trip::with('trip_staff')->with('trip_passenger')->find($id);
 		if($trip){
             return Returns::ok($trip);
         }
@@ -115,7 +115,7 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-	public function start($id)
+	public static function start($id)
 	{
 		$trip=Trip::find($id);
 		$trip->status=1;

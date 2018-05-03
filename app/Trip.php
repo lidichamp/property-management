@@ -21,4 +21,7 @@ class Trip extends Model
     public function trip_staff(){
         return $this->hasMany('\App\Trip_staff', 'trip_id', 'id');
     }
+	public function trip_passenger(){
+        return $this->hasMany('\App\Trip_passenger', 'trip_id', 'id');
+    }
 }

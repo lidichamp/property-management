@@ -60,12 +60,12 @@ Route::group([
         Route::get('/create/{id}/{trip_id?}', 'Dashboard\TripController@index')->name('trip.home');
         Route::get('/manage/{id}', 'Dashboard\TripController@manage')->name('trip.overview');
         Route::post('/add_update/{id?}', 'Dashboard\TripController@createtrip_process')->name('trip.manage');
-		Route::post('/status_started/{id?}', 'Dashboard\TripController@starttrip')->name('trip.start');
-		Route::post('/status_completed/{id?}', 'Dashboard\TripController@endtrip')->name('trip.complete');
-		Route::post('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('trip.cancel');
-		Route::post('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
+		Route::get('/status_started/{id?}', 'Dashboard\TripController@starttrip')->name('trip.start');
+		Route::get('/status_completed/{id?}', 'Dashboard\TripController@endtrip')->name('trip.complete');
+		Route::get('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('trip.cancel');
+		Route::get('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
 		Route::get('/view/{id}', 'Dashboard\TripController@view_trip')->name('trip.view');
-		Route::get('/passenger/{trip_id}/{id?}', 'Dashboard\TripController@passenger')->name('trip.passenger');
+		Route::get('/passenger/{trip_id}/{id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
     });
 	
 	 Route::group([
