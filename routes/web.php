@@ -60,6 +60,11 @@ Route::group([
         Route::get('/create/{id}/{trip_id?}', 'Dashboard\TripController@index')->name('trip.home');
         Route::get('/manage/{id}', 'Dashboard\TripController@manage')->name('trip.overview');
         Route::post('/add_update/{id?}', 'Dashboard\TripController@createtrip_process')->name('trip.manage');
+		Route::post('/status_started/{id?}', 'Dashboard\TripController@starttrip')->name('operator.add.boat');
+		Route::post('/status_completed/{id?}', 'Dashboard\TripController@endtrip')->name('operator.add.boat');
+		Route::post('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('operator.add.boat');
+		Route::post('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('operator.add.boat');
+		Route::get('/view/{id}', 'Dashboard\TripController@view_trip')->name('view.trip');
     });
 	
 	 Route::group([
@@ -70,10 +75,6 @@ Route::group([
         Route::get('/administration/{id}', 'Dashboard\OperatorsController@dashboard')->name('operator.dashboard');
         Route::get('/manage_boat/{operator_id}/{id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
         Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
-		Route::post('/status_started/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
-		Route::post('/status_completed/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
-		Route::post('/status_cancelled/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
-		Route::post('/status_failed/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
         Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
     });
     Route::group([

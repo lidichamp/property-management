@@ -18,6 +18,15 @@ class TripController extends Controller
 				'operator'=>$id,
 				'trip'=>Trip::find($trip_id)]);
 	}
+	
+	public static function view_trip($id)
+	{
+		
+		return view('dashboard.trip.view_trip', [
+                'page_title'=>'View '.$id,
+				
+				'trip'=>Trip::find($id)]);
+	}
      public static function manage(TripDataTable $dataTable,$operator)
 	{
 	if (request()->ajax()) {
