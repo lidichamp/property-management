@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Core\Trips;
 use App\Trip;
 use App\Passenger;
+use App\Core\Passengers;
 use App\Trip_staff;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
@@ -25,7 +26,7 @@ class TripController extends Controller
 	
 	public static function save_passenger($trip_id,$id=null)
 	{
-		$process = collect(Trips::save_passenger($trip_id,$id=null));
+		$process = collect(Passengers::create($trip_id,$id=null));
 		
         if($process->get('code') == Returns::$ok_response){
             return back()->withInput(['success'=>true]);

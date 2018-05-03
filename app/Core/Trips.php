@@ -34,7 +34,6 @@ class Trips{
         if($validate->fails()){
             return Returns::validationError($validate->errors());
         }
-		dd($payload);
         return static::process_trip($payload);
     }
     
