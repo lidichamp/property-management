@@ -55,7 +55,14 @@
 								  <i class="form-group__bar"></i>
                             </div>
 							</div>
-                          
+							
+							<div class="row">
+							@foreach($trip_staff as $staff)
+							<div class="col-sm-6">
+							{{\App\User::find($staff->staff_id)->name}}
+							</div>
+							@endforeach
+                          </div>
                 </div>
             </div>
                 </div>

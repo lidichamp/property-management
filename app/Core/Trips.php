@@ -16,10 +16,12 @@ class Trips{
     public static function create(Request $request){
         $payload = Helpers::remove_nulls($request->all());
         return static::validates_and_exec($payload);
+		
     }
 
  
     private static function validates_and_exec($payload){
+		
         $validate_array = [
             'boat_id'=>'required|exists:boats,id',
             'from_jetty'=>'required|exists:jetties,id',
@@ -37,7 +39,6 @@ class Trips{
     
     private static function validate_staff($payload){
         foreach ($payload['staff'] as $index=>$value){
-			dd($payload['staff']);
             $validate_trip_staff = Validator::make($value, [
             'staff_id'=>'required|exists:users,id']);
             if($validate_staff->fails()){
