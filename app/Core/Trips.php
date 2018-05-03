@@ -60,15 +60,18 @@ class Trips{
         $trip = Trip::create(collect($payload)->only($tripModel->getFillable())->toArray());
 		//dd($payload);
         if($trip){
-            foreach ($payload['staff'] as $value[]){
-				
-                $value['trip_id'] = $trip->id->string;
-                
+			//dd($payload['staff']);
+			$detail=[];
+            foreach ($payload['staff'] as $key=>$value){
+                $details['trip_id'] = $trip->id->string;
+                $details['staff_id']= $value;
+			array_push($detail,$details);	
                 }
                 //try and catch error for a rollback if error error
                 try{
-					//dd($value);
-                    array_push($trip_staff_array, Trip_staff::create($value)->toArray());
+				foreach($detail as $pointer=>$array_value)
+                    array_push($trip_staff_array, Trip_staff::create($array_value)->toArray());
+					
                 }
                 catch(QueryException $ex){
                     $trip->delete();
