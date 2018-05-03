@@ -59,7 +59,7 @@ Route::group([
     'prefix'=>'trip',
     'middleware'=>['auth:api']
 ], function(){
-    Route::post('/add', 'Api\TripController@add')->middleware('scope:monitor');
+    Route::post('/add/{id}', 'Api\TripController@add')->middleware('scope:monitor');
 	Route::get('/get/{id}','Api\TripController@get')->middleware('scope:monitor');
     Route::get('/all', 'Api\TripController@get_all')->middleware('scope:monitor');
     Route::get('/operator/get/{id}', 'Api\TripController@get_by_operator')->middleware('scope:monitor');
