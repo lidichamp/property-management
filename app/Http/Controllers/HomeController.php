@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Core\Helpers;
 use App\Trip;
+use App\Trip_passenger;
 class HomeController extends Controller
 {
     /**
@@ -28,15 +29,16 @@ class HomeController extends Controller
     public function index(Request $request)
     { $date_from = $request->query('start') ?: '01/01/'.date('Y');
         $date_to = $request->query('end') ?: date('d/m/Y');
-		$values = User::select('jetties.name as jetty', DB::raw('count(home_jetty) AS users'))
-		->leftJoin('jetties', 'users.home_jetty', 'jetties.id')
+		$values = Trip_passenger::select('jetties.name as jetty', DB::raw('count(trip_passengers.passenger_id) AS passengers'))
+		->leftJoin('trips', 'trip_passengers.trip_id', 'trips.id')
+		->leftJoin('jetties', 'trips.from_jetty', 'jetties.id')
 		->where(function($query) use($date_from, $date_to){
                     $query->whereBetween('jetties.created_at', [
                         Helpers::dbFriendlyDate(str_replace('/', '-', $date_from)),
                         Helpers::dbFriendlyDate(str_replace('/', '-', $date_to))
                     ])->orWhere('jetties.created_at', '0000-00-00');
 					 })
-		->groupBy('home_jetty')
+		->groupBy('jetties.id')
 		->get();
 		
 		$stats = Trip::select('operators.name as operator', DB::raw('count(trips.id) AS trips'))
@@ -57,10 +59,10 @@ class HomeController extends Controller
         ->values($stats->pluck('trips'))
         ->responsive(false);
 		$graph = Charts::create('bar', 'highcharts')
-        ->title('Jetty Users')
-        ->elementLabel('Trips')
+        ->title('Jetty Passengers')
+        ->elementLabel('Passengers')
         ->labels($values->pluck('jetty'))
-        ->values($values->pluck('users'))
+        ->values($values->pluck('passengers'))
         ->responsive(false);
         return view('home', [
             'page_title'=>'Home','chart'=>$chart,'graph'=>$graph,
