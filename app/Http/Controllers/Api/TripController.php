@@ -14,7 +14,7 @@ class TripController extends Controller
 
 {    public function add(Request $request)
 	{
-		  // return Returns::ok($request);
+		  // return Response::json(Returns::ok($request));
        return Response::json(Returns::ok(Trips::create($request)));
     }
     

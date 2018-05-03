@@ -1,4 +1,4 @@
-@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.operator_layout');
+@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.layout');
 
     @section('sub-body')
         <div class="row">
@@ -7,7 +7,7 @@
             <div class="col-sm-7">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Create Trip</h2>
+                        <h2 class="card-title">Trip</h2>
                         <small class="card-subtitle"></small>
                     </div>
 
@@ -15,34 +15,46 @@
                 
 
                             <div class="form-group form-group--float">
-                                <label>Depature Type</label><br />
-                               {{$trip->departure_type}} <i class="form-group__bar"></i>
-                            </div>
-							<div class="form-group form-group--float">
-                                <label>From Jetty</label><br />
-                               {{$trip->from_jetty}}
-							   <i class="form-group__bar"></i>
+							<div class="row">
+							<div class="col-sm-6">
+                                <label>Depature Type: 
+                               @if($trip->departure_type==1)
+							    Depart When full
+							   @elseif($trip->departure_type==2)
+							    Depart at Exact Time
+							   @endif </label><br />
+							   <br/>
+							   </div>
+							<div class="col-sm-6">
+							<label>From Jetty: {{\App\Jetty::find($trip->from_jetty)->name}} </label><br />
+								
+                               <br/>
+							   
+							   </div>
                             </div>
 							
-							<div class="form-group form-group--float">
-                                <label>To Jetty</label><br />
-                                {{$trip->to_jetty}}
-								<i class="form-group__bar"></i>
-                            </div>
 							
-                            <div class="form-group form-group--float">
+							<div class="row">
+							<div class="col-sm-6">
+                                <label>To Jetty: {{\App\Jetty::find($trip->to_jetty)->name}} </label><br />
+                                
+								
+                            </div>
+							<div class="col-sm-6">
                                 <label>Boat</label><br />
-                                {{$trip->boat}}
-                                <i class="form-group__bar"></i>
+								<br/>
                             </div>
+							</div>
 							
 							 
                            
-							<div class="form-group form-group--float">
+							<div class="row">
+							<div class="col-sm-6">
                                 <label>Depature Time</label><br />
                                   {{$trip->departure_time}}
 								  <i class="form-group__bar"></i>
                             </div>
+							</div>
                           
                 </div>
             </div>

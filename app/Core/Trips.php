@@ -28,7 +28,6 @@ class Trips{
             'depature_type'=>'required|numeric|in:1,2',
             'depature_time'=>'required'
          ];
-		// dd($payload);
         $validate = Validator::make($payload, $validate_array);
         if($validate->fails()){
             return Returns::validationError($validate->errors());
