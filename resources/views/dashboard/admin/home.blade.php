@@ -1,4 +1,4 @@
-@extends('dashboard.admin.layout')
+@extends('layout')
 @section('sub-body')
     <div class="row quick-stats">
         <div class="col-sm-6 col-md-3">

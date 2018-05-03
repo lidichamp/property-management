@@ -21,7 +21,7 @@ class CreateTripsTable extends Migration
 			$table->integer('boat_id');
 			$table->integer('status');
 			$table->integer('depature_type');
-			$table->time('depature_time');
+			$table->datetime('depature_time');
             $table->timestamps();
         });
     }

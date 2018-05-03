@@ -20,7 +20,7 @@
 				<li class="nav-item dropdown {{ str_contains(request()->path(), 'trip')?'navigation__active':'' }}">
                             <a class="nav-link" href="" data-toggle="dropdown"><i class="zmdi zmdi-swap"></i> Trips</a>
                             <div class="dropdown-menu">
-                                <a href="{{ route('trip.home',request()->route('id')) }}" class="dropdown-item">Add</a>
+                                <a href="{{ route('trip.home',request()->route('id')) }}" class="dropdown-item">Create</a>
                                 <a href="{{ route('trip.overview',request()->route('id')) }}" class="dropdown-item">Manage</a>
                             </div>
                 </li>

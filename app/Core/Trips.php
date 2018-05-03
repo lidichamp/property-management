@@ -22,17 +22,18 @@ class Trips{
     private static function validates_and_exec($payload){
         $validate_array = [
             'boat_id'=>'required|exists:boats,id',
-            'from_jetty'=>'required|exists:boats,id',
+            'from_jetty'=>'required|exists:jetties,id',
 			'creator'=>'required|exists:users,id',
-            'to_jetty'=>'required|exists:boats,id',
+            'to_jetty'=>'required|exists:jetties,id',
             'depature_type'=>'required|numeric|in:1,2',
             'depature_time'=>'required'
          ];
+		// dd($payload);
         $validate = Validator::make($payload, $validate_array);
         if($validate->fails()){
             return Returns::validationError($validate->errors());
         }
-        return static::validate_staff($payload);
+        return static::process_trip($payload);
     }
     
     private static function validate_staff($payload){
@@ -107,6 +108,46 @@ class Trips{
 	public static function get_by_operator($id)
 	{
 		Trip::with('trip_staff')->where('operator',$id)->get();
+		if($trip){
+            return Returns::ok($trip);
+        }
+        return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
+	}
+	public function start($id)
+	{
+		$trip=Trip::find($id);
+		$trip->status=1;
+		$trip->update();
+		if($trip){
+            return Returns::ok($trip);
+        }
+        return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
+	}
+		public function complete($id)
+	{
+		$trip=Trip::find($id);
+		$trip->status=3;
+		$trip->update();
+		if($trip){
+            return Returns::ok($trip);
+        }
+        return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
+	}
+		public function cancel($id)
+	{
+		$trip=Trip::find($id);
+		$trip->status=4;
+		$trip->update();
+		if($trip){
+            return Returns::ok($trip);
+        }
+        return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
+	}
+		public function fail($id)
+	{
+		$trip=Trip::find($id);
+		$trip->status=5;
+		$trip->update();
 		if($trip){
             return Returns::ok($trip);
         }
