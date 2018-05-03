@@ -11,9 +11,10 @@ use Response;
 use Validator;
 
 class TripController extends Controller
-{    public function add(Request $request){
- 
-       Trips::create($request);
+{    public function add(Request $request)
+	{
+		   return Returns::ok($request);
+       //Trips::create($request);
     }
     
 	public function get_all()
