@@ -13,7 +13,7 @@ use Validator;
 class TripController extends Controller
 {    public function add(Request $request){
  
-        return Response::json(Trips::create($request));
+       Trips::create($request);
     }
     
 	public function get_all()
