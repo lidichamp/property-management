@@ -70,6 +70,10 @@ Route::group([
         Route::get('/administration/{id}', 'Dashboard\OperatorsController@dashboard')->name('operator.dashboard');
         Route::get('/manage_boat/{operator_id}/{id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
         Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
+		Route::post('/status_started/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
+		Route::post('/status_completed/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
+		Route::post('/status_cancelled/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
+		Route::post('/status_failed/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
         Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
     });
     Route::group([
