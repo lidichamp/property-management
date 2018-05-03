@@ -8,6 +8,8 @@ use App\User;
 use App\Jetty;
 use App\Http\Controllers\Controller;
 use App\DataTables\JettiesDataTable;
+use Charts;
+use DB;
 class JettysController extends Controller
 {
      public function index(Request $request, $id=null){
@@ -18,11 +20,21 @@ class JettysController extends Controller
                 $user_id = $id;
             }
         }
-
+	$values = Boat::select('jetties.name as jetty', DB::raw('count(home_jetty) AS boats'))
+		->leftJoin('jetties', 'boats.home_jetty', 'jetties.id')
+		->groupBy('home_jetty')
+		->get();
+		$chart = Charts::create('bar', 'highcharts')
+        ->title('Jetty Boats')
+        ->elementLabel('Boats')
+        ->labels($values->pluck('jetty'))
+        ->values($values->pluck('boats'))
+        ->responsive(false);
         $found_user = User::find($user_id);
         if($found_user){
             return view('dashboard.jetty.home', [
                 'page_title'=>'View Jetties ',
+				'chart'=>$chart,
                 'found_user'=>$found_user,
                 'id'=>$id
             ]);

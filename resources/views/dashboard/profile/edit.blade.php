@@ -41,8 +41,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Office</label><br />
-                        <strong>{{ $found_user->office?$found_user->officeObject->name:'NONE' }}</strong>
+                        <label>Home Jetty</label><br />
+                        <strong>{{ $found_user->home_jetty?\App\Jetty::getName($found_user->home_jetty) :'NONE' }}</strong>
                         <i class="form-group__bar"></i>
                     </div>
 

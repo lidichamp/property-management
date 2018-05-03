@@ -22,11 +22,21 @@ class OperatorsController extends Controller
                 $user_id = $id;
             }
         }
-
+		$values = User::select('operators.name as operator', DB::raw('count(operator) AS staff'))
+		->leftJoin('operators', 'users.operator', 'operators.id')
+		->groupBy('users.operator')
+		->get();
+		$chart = Charts::create('bar', 'highcharts')
+        ->title('Operator Staff')
+        ->elementLabel('Staff')
+        ->labels($values->pluck('operator'))
+        ->values($values->pluck('staff'))
+        ->responsive(false);
         $found_user = User::find($user_id);
         if($found_user){
             return view('dashboard.operator.home', [
                 'page_title'=>'View Operators ',
+				'chart'=>$chart,
                 'found_user'=>$found_user,
                 'id'=>$id
             ]);

@@ -9,6 +9,9 @@ use App\Jetty;
 use App\Http\Controllers\Controller;
 use App\DataTables\BoatDataTable;
 use App\DataTables\BoatOperatorDataTable;
+use Charts;
+use DB;
+use App\Trip;
 class BoatsController extends Controller
 {
      public function index(Request $request, $id=null){
@@ -18,12 +21,23 @@ class BoatsController extends Controller
             if($request->user()->role == 1){
                 $user_id = $id;
             }
-        }
-
+		}
+		$values = Trip::select('boats.name as boat', DB::raw('count(boat_id) AS trips'))
+		->leftJoin('boats', 'trips.boat_id', 'boats.id')
+		->groupBy('boats.id')
+		->get();
+        
+		$chart = Charts::create('bar', 'highcharts')
+        ->title('Boat Trips')
+        ->elementLabel('Trips')
+        ->labels($values->pluck('boat'))
+        ->values($values->pluck('trips'))
+        ->responsive(false);
         $found_user = User::find($user_id);
         if($found_user){
             return view('dashboard.boat.home', [
-                'page_title'=>'View Boats ',
+                'page_title'=>'View Boats '
+				,'chart'=>$chart,
                 'found_user'=>$found_user,
                 'id'=>$id
             ]);

@@ -26,4 +26,15 @@
             </div>
         </div>
     </div>
+	  <div class="col-sm-12">
+	<div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            		{!! Charts::assets() !!}
+                    {!! $chart->render() !!}
+                        </div>
+                    </div>
+                </div>
+				</div>
 @endsection
+ {!! $chart->script() !!}
