@@ -63,7 +63,7 @@ Route::group([
 	Route::get('/get/{id}','Api\TripController@get')->middleware('scope:monitor');
     Route::get('/all', 'Api\TripController@get_all')->middleware('scope:monitor');
     Route::get('/operator/get/{id}', 'Api\TripController@get_by_operator')->middleware('scope:monitor');
-	Route::post('/{trip_id}/passenger', 'Api\TripController@save_passenger')->middleware('scope.monitor');
+	Route::post('/{trip_id}/passenger', 'Api\TripController@save_passenger')->middleware('scope:monitor');
 	Route::get('/{id}', 'Api\TripController@start')->middleware('scope.monitor');
 });
 
