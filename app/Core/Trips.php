@@ -15,6 +15,7 @@ class Trips{
 
     public static function create(Request $request){
         $payload = Helpers::remove_nulls($request->all());
+		
         return static::validates_and_exec($payload);
 		
     }
