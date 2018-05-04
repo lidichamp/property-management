@@ -33,10 +33,10 @@ class HomeController extends Controller
 		->leftJoin('trips', 'trip_passengers.trip_id', 'trips.id')
 		->leftJoin('jetties', 'trips.from_jetty', 'jetties.id')
 		->where(function($query) use($date_from, $date_to){
-                    $query->whereBetween('jetties.created_at', [
+                    $query->whereBetween('trips.depature_time', [
                         Helpers::dbFriendlyDate(str_replace('/', '-', $date_from)),
                         Helpers::dbFriendlyDate(str_replace('/', '-', $date_to))
-                    ])->orWhere('jetties.created_at', '0000-00-00');
+                    ])->orWhere('trips.depature_time', '0000-00-00');
 					 })
 		->groupBy('jetties.id')
 		->get();

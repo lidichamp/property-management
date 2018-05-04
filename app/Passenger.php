@@ -16,7 +16,7 @@ class Passenger extends Model
 
     protected $dates = [ 'created_at', 'updated_at'];
 
-    protected $fillable = ['name','phone','kin_name','kin_phone','age_range'];
+    protected $fillable = ['name','phone','kin','kin_phone','age_range'];
 
 
 }

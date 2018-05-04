@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-block">
-                        {!! Form::open(['route'=>['trip.manage', $trip?$trip->id:null]]) !!}
+                        {!! Form::open(['route'=>['trip.passenger.save',request()->route('trip_id')]]) !!}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -33,7 +33,7 @@
                             </div>
 							
                             <div class="form-group form-group--float">
-                                {!! Form::text('kin_name', $passenger?$passenger->kin_name:null, ['class'=>'form-control']) !!}
+                                {!! Form::text('kin', $passenger?$passenger->kin:null, ['class'=>'form-control']) !!}
                                 <label>Next of Kin Name</label>
                                 <i class="form-group__bar"></i>
                             </div>

@@ -13,13 +13,8 @@ use DB;
 class JettysController extends Controller
 {
      public function index(Request $request, $id=null){
-        $user_id = $request->user()->id;
-        if($id){
-            //super admin checking profile of a sub user
-            if($request->user()->role == 1){
-                $user_id = $id;
-            }
-        }
+ if($request->user()->role == 1){
+               $user_id=$request->user()->role;
 	$values = Boat::select('jetties.name as jetty', DB::raw('count(home_jetty) AS boats'))
 		->leftJoin('jetties', 'boats.home_jetty', 'jetties.id')
 		->groupBy('home_jetty')
@@ -39,10 +34,11 @@ class JettysController extends Controller
                 'id'=>$id
             ]);
         }
+ }
         return redirect(route('home'))->withErrors([
             'You do not have enough Privilege to perform this operation'
         ]);
-
+ 
     }
 	  public function manage(JettiesDataTable $dataTable, $id=null){
         if (request()->ajax()) {

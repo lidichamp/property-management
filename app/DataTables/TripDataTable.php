@@ -21,7 +21,7 @@ class TripDataTable extends DataTable
                 return 'Depart when Full';
             }
             elseif($one->depature_type==2){
-                return 'Depart at'. $one->departure_time;
+                return 'Depart at'. $one->depature_time;
             }
         }) ->addColumn('status', function($one) {
             if($one->status==0){
@@ -40,16 +40,19 @@ class TripDataTable extends DataTable
 				return 'Failed';
 			}
         })
-		->addColumn('action', function($one) {
-			 $menu = '<a href="'.route('trip.passenger', $one->id).'" title="Add Passengers" style="margin-right: 10px"><i class="zmdi zmdi-plus text-warning"></i></a>';
+			->addColumn('action', function($one) {
+				$menu='';
+				if($one->status==0){
+				 $menu .= '<a href="'.route('trip.passenger', $one->id).'" title="Add Passengers" style="margin-right: 10px"><i class="zmdi zmdi-plus text-warning"></i></a>';
+				}
 				if($one->status==0)
 				{
 				$menu .= '<a href="'.route('trip.start', $one->id).'" title="Start Trip" style="margin-right: 10px"><i class="zmdi zmdi-check-square"></i></a>';	
 				}
 				elseif($one->status==1)
 				{
-				$menu .='<a href="'.route('trip.complete', $one->id).'" title="End Trip" style="margin-right: 10px"><i class="zmdi zmdi-check-square text-danger"></i></a>';
-				$menu .='<a href="'.route('trip.cancel', $one->id).'" title="End Trip" style="margin-right: 10px"><i class="zmdi zmdi-cancel-square"></i></a>';
+				$menu .='<a href="'.route('trip.complete', $one->id).'" title="End Trip" style="margin-right: 10px"><i class="zmdi zmdi-close-circle text-danger"></i></a>';
+				$menu .='<a href="'.route('trip.cancel', $one->id).'" title="Cancel Trip" style="margin-right: 10px"><i class="zmdi zmdi-minus-square text-warning"></i></a>';
 				}
                 $menu .= '<a href="'.route('trip.view', $one->id).'" title="View Trip" style="margin-right: 10px"><i class="zmdi zmdi-eye text-success"></i></a>';
                 return $menu;
@@ -70,7 +73,7 @@ class TripDataTable extends DataTable
     public function query(Trip $model)
     {
         return $model->newQuery()->select([
-            'trips.id','from.name as departure_jetty','to.name as destination_jetty','boats.name as boat_name','boats.capacity','depature_time','depature_type'
+            'trips.id','from.name as departure_jetty','to.name as destination_jetty','boats.name as boat_name','boats.capacity','depature_time','depature_type','trips.status'
         ])
 		
         ->leftJoin('boats', 'trips.boat_id', 'boats.id')

@@ -15,13 +15,10 @@ use App\Trip;
 class BoatsController extends Controller
 {
      public function index(Request $request, $id=null){
-        $user_id = $request->user()->id;
-        if($id){
-            //super admin checking profile of a sub user
+     
             if($request->user()->role == 1){
-                $user_id = $id;
-            }
-		}
+               $user_id=$request->user()->role;
+           
 		$values = Trip::select('boats.name as boat', DB::raw('count(boat_id) AS trips'))
 		->leftJoin('boats', 'trips.boat_id', 'boats.id')
 		->groupBy('boats.id')
@@ -42,6 +39,7 @@ class BoatsController extends Controller
                 'id'=>$id
             ]);
         }
+			}
         return redirect(route('home'))->withErrors([
             'You do not have enough Privilege to perform this operation'
         ]);

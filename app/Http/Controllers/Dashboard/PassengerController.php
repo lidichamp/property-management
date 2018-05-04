@@ -24,9 +24,9 @@ class PassengerController extends Controller
 	
 
 	
-	public static function save_passenger($trip_id,$id=null)
+	public static function save_passenger(Request $request,$trip_id,$id=null)
 	{
-		$process = collect(Passengers::create($trip_id,$id=null));
+		$process = collect(Passengers::create($request,$trip_id,$id=null));
 		
         if($process->get('code') == Returns::$ok_response){
             return back()->withInput(['success'=>true]);

@@ -40,6 +40,7 @@ class User extends Authenticatable
     public static function getRoles(){
         return [
             0=>'NO ROLE',
+			1=>'SUPER ADMIN',
             2=>'OPERATOR ADMIN',
             3=>'ASSITANT',
             4=>'BOAT MAN',

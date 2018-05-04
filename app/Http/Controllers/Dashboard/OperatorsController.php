@@ -15,13 +15,8 @@ use Charts;
 class OperatorsController extends Controller
 {
      public function index(Request $request, $id=null){
-        $user_id = $request->user()->id;
-        if($id){
-            //super admin checking profile of a sub user
-            if($request->user()->role == 1){
-                $user_id = $id;
-            }
-        }
+  if($request->user()->role == 1){
+               $user_id=$request->user()->role;
 		$values = User::select('operators.name as operator', DB::raw('count(operator) AS staff'))
 		->leftJoin('operators', 'users.operator', 'operators.id')
 		->groupBy('users.operator')
@@ -41,10 +36,11 @@ class OperatorsController extends Controller
                 'id'=>$id
             ]);
         }
+  }
         return redirect(route('home'))->withErrors([
             'You do not have enough Privilege to perform this operation'
         ]);
-
+  
     }
 	  public function manage(OperatorDataTable $dataTable, $id=null){
         if (request()->ajax()) {

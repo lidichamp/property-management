@@ -34,6 +34,10 @@ class Trips{
         if($validate->fails()){
             return Returns::validationError($validate->errors());
         }
+		if($payload['from_jetty']==$payload['to_jetty'])
+		{
+			return Returns::validationError('Depature and destination Jtty cannot be the same.');
+		}
         return static::process_trip($payload);
     }
     
@@ -125,7 +129,7 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-		public function complete($id)
+		public static function complete($id)
 	{
 		$trip=Trip::find($id);
 		$trip->status=3;
@@ -135,7 +139,7 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-		public function cancel($id)
+		public static function cancel($id)
 	{
 		$trip=Trip::find($id);
 		$trip->status=4;
@@ -145,7 +149,7 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-		public function fail($id)
+		public static function fail($id)
 	{
 		$trip=Trip::find($id);
 		$trip->status=5;

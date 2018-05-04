@@ -57,13 +57,75 @@
 							</div>
 							
 							<div class="row">
-							@foreach($trip_staff as $staff)
-							<div class="col-sm-6">
-							{{\App\User::find($staff->staff_id)->name}}
+							<div class="col-sm-4">
 							</div>
+							<div class="col-sm-4">
+							STAFF ON BOARD
+							
+							</div>
+							
+							<div class="col-sm-4">
+							</div>
+							<div class="col-sm-12">
+							<hr/>
+							</div>
+							<div class="col-sm-12">
+							<ol>
+							@foreach($trip_staff as $staff)
+							<li>
+							<div class="col-sm-10">
+							{{\App\User::find($staff->staff_id)->name}} - 
+							   
+							{{\App\User::getRoleName(\App\User::find($staff->staff_id)->role)}}
+							</div>
+							</li>
 							@endforeach
+							<ol>
+							</div>
                           </div>
-                </div>
+						  <div class="row">
+							<div class="col-sm-4">
+							</div>
+							<div class="col-sm-6">
+							PASSENGERS ON BOARD
+							
+							</div>
+							
+							<div class="col-sm-2">
+							</div>
+							<div class="col-sm-12">
+							<hr/>
+							</div>
+							<div class="col-sm-2">
+							<b>S/N</b>
+							</div>
+							<div class="col-sm-4">
+							<b>Passenger Name</b>
+							</div>
+								<div class="col-sm-3">
+							<b>Passenger Telephone</b>
+							</div>
+								<div class="col-sm-3">
+							<b>Next of Kin Contact</b>
+							</div>
+							@foreach($trip_passenger as $passenger)
+							<div class="col-sm-2">
+							{{$sn++}}
+							</div>
+							<div class="col-sm-4">
+							{{\App\Passenger::find($passenger->passenger_id)->name}}
+						
+							</div>
+							<div class="col-sm-3">
+							{{\App\Passenger::find($passenger->passenger_id)->phone}}
+							</div>
+							<div class="col-sm-3">
+							{{\App\Passenger::find($passenger->passenger_id)->kin_phone}}
+							</div>
+							
+							@endforeach
+							
+                          </div>
             </div>
                 </div>
             </div>

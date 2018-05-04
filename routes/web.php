@@ -66,6 +66,7 @@ Route::group([
 		Route::get('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
 		Route::get('/view/{id}', 'Dashboard\TripController@view_trip')->name('trip.view');
 		Route::get('/passenger/{trip_id}/{id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
+		Route::post('/passenger/save/{trip_id}', 'Dashboard\PassengerController@save_passenger')->name('trip.passenger.save');
     });
 	
 	 Route::group([

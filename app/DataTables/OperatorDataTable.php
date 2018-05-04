@@ -4,7 +4,7 @@ namespace App\DataTables;
 
 use App\Operator;
 use Yajra\DataTables\Services\DataTable;
-
+use DB;
 class OperatorDataTable extends DataTable
 {
     /**
@@ -37,8 +37,12 @@ class OperatorDataTable extends DataTable
     public function query(Operator $model)
     {
         return $model->newQuery()->select([
-            'operators.id','operators.name'
-        ]);
+            DB::raw('count(trips.id) as trips'),'operators.id','operators.name',DB::raw('count(users.id) as staff')
+        ])
+		->leftJoin('users','users.operator','operators.id')
+		->leftJoin('boats','operators.id','boats.operator')
+		->leftJoin('trips','boats.id','trips.boat_id')
+		->groupBy('operators.id');
            // ->where('role', '!=', User::$SYSTEM_ADMIN_ROLE);
     }
 
@@ -66,7 +70,9 @@ class OperatorDataTable extends DataTable
     {
         return [
             'id',
-            'name'
+            'name',
+			'trips',
+			'staff'
         ];
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Core\Trips;
 use App\Trip;
 use App\Trip_staff;
+use App\Trip_passenger;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
 use App\User;
@@ -43,6 +44,8 @@ class TripController extends Controller
 		return view('dashboard.trip.view_trip', [
                 'page_title'=>'View '.$id,
 				'trip_staff'=>Trip_staff::where('trip_id',$id)->get(),
+				'trip_passenger'=>Trip_passenger::where('trip_id',$id)->get(),
+				'sn'=>1,
 				'trip'=>Trip::find($id)]);
 	}
      public static function manage(TripDataTable $dataTable,$operator)
@@ -108,7 +111,7 @@ class TripController extends Controller
         $process = collect(Trips::create($request, $id));
 		
         if($process->get('code') == Returns::$ok_response){
-            return back()->withInput(['success'=>true]);
+          return redirect()->route('trip.passenger',$process->get('data')['trip'])->withInput(['success'=>true]);
         }
         else{
             $error = is_object($process->get('error'))?$process->get('error'):(object)['msg'=>$process->get('error')];
