@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
 use App\Core\Trips;
+use App\Core\Passengers;
 use App\Trip;
 use Response;
 use Validator;
