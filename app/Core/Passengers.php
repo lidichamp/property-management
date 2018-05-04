@@ -52,6 +52,7 @@ class Passengers{
     
     public static function process_passenger($payload,$trip_id,$id){
         //first insert into the passengers table
+		
         $passengerModel = new Passenger();
       
         $passenger = Passenger::create(collect($payload)->only($passengerModel->getFillable())->toArray());
