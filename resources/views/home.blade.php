@@ -28,10 +28,7 @@
             <div class="card widget-visitors">
                 <div class="card-header pull-right">
                     <div class="card-title pull-right">
-                        <div class="form-group">
-                            <label>Analytic Date Range</label>
-                            {!! Form::text('date_between', null, ['class'=>'form-control', 'id'=>'daterangepicker2']) !!}
-                        </div>
+                        
                     </div>
                 </div>
 
