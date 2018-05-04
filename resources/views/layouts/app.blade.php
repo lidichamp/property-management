@@ -14,7 +14,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
-	  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+
     @stack('styles')
     @stack('scripts_header')
 </head>
@@ -61,7 +62,7 @@
     <script src="{{ asset('js/all.js') }}"></script>
     <script src="{{ asset('js/lodash.min.js') }}"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>  
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 
 
 	<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>

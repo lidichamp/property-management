@@ -59,7 +59,7 @@
                            
 							<div class="form-group form-group--float">
                                 <label>Depature Time</label><br />
-                                  <input type='datetime-local' name="depature_time" id="depature_time" value="{{Carbon\Carbon::now()}}"class="form-control">
+                                  <input type='datetime-local' name="depature_time" id="depature_time" class="form-control">
                                 <i class="form-group__bar"></i>
                             </div>
                             <div class="card-block center-block text-center align-content-center">
@@ -84,11 +84,12 @@
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
     <script src="/vendor/datatables/buttons.server-side.js"></script>
 	<script>
-	   <script>
         $(document).ready(function(){
-            $('#depature_time')..datetimepicker({
+            $('#depature_time').datetimepicker({
                 locale: {
-                    format: 'DD/MM/YYYY HH:MM:SS'
+                   language: 'pt-BR'
                 }
+				
+});
 	</script>
 @endpush

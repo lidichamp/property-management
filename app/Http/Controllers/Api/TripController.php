@@ -12,22 +12,26 @@ use Validator;
 
 class TripController extends Controller
 
-{    public function add(Request $request)
+{    public static function add(Request $request)
 	{
 		  // return Response::json(Returns::ok($request));
        return Response::json(Returns::ok(Trips::create($request)));
     }
     
-	public function get_all()
+	public static function get_all()
 	{
-		Trips::all();
+		return Response::json(Returns::ok(Trips::all()));
 	}
 
-	public function get_by_operator(Request $request, $operator){
-		Trips::get_by_operator($operator);
+	public static function get_by_operator(Request $request, $operator){
+		return Response::json(Returns::ok(Trips::get_by_operator($operator)));
 	}
-	public function get(Request $request, $id)
+	public static function get(Request $request, $id)
 	{
-		Trips::find($id);
+		return Response::json(Returns::ok(Trips::find($id)));
 	}
+	public static function save_passenger(Request $request,$trip_id)
+	{
+		return Response::json(Returns::ok(Passengers::create($request,$trip_id,$id=null)));
+	}		
 }
