@@ -43,7 +43,7 @@ class TripDataTable extends DataTable
 			->addColumn('action', function($one) {
 				$menu='';
 				if($one->status==0){
-				 $menu .= '<a href="'.route('trip.passenger', $one->id).'" title="Add Passengers" style="margin-right: 10px"><i class="zmdi zmdi-plus text-warning"></i></a>';
+				 $menu .= '<a href="'.route('trip.passenger',[request()->route('id'),$one->id]).'" title="Add Passengers" style="margin-right: 10px"><i class="zmdi zmdi-plus text-warning"></i></a>';
 				}
 				if($one->status==0)
 				{
@@ -54,7 +54,7 @@ class TripDataTable extends DataTable
 				$menu .='<a href="'.route('trip.complete', $one->id).'" title="End Trip" style="margin-right: 10px"><i class="zmdi zmdi-close-circle text-danger"></i></a>';
 				$menu .='<a href="'.route('trip.cancel', $one->id).'" title="Cancel Trip" style="margin-right: 10px"><i class="zmdi zmdi-minus-square text-warning"></i></a>';
 				}
-                $menu .= '<a href="'.route('trip.view', $one->id).'" title="View Trip" style="margin-right: 10px"><i class="zmdi zmdi-eye text-success"></i></a>';
+                $menu .= '<a href="'.route('trip.view',[request()->route('id'),$one->id]).'" title="View Trip" style="margin-right: 10px"><i class="zmdi zmdi-eye text-success"></i></a>';
                 return $menu;
 			 })
             ->setRowClass(function($one){

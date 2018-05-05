@@ -38,15 +38,15 @@ class TripController extends Controller
 	}
 	
 	
-	public static function view_trip($id)
+	public static function view_trip($id,$trip_id)
 	{
 		
 		return view('dashboard.trip.view_trip', [
-                'page_title'=>'View '.$id,
-				'trip_staff'=>Trip_staff::where('trip_id',$id)->get(),
-				'trip_passenger'=>Trip_passenger::where('trip_id',$id)->get(),
+                'page_title'=>'View '.$trip_id,
+				'trip_staff'=>Trip_staff::where('trip_id',$trip_id)->get(),
+				'trip_passenger'=>Trip_passenger::where('trip_id',$trip_id)->get(),
 				'sn'=>1,
-				'trip'=>Trip::find($id)]);
+				'trip'=>Trip::find($trip_id)]);
 	}
      public static function manage(TripDataTable $dataTable,$operator)
 	{

@@ -45,14 +45,14 @@ class BoatsController extends Controller
         ]);
 
     }
-	  public function manage(BoatOperatorDataTable $dataTable, $id=null){
+	  public function manage(BoatOperatorDataTable $dataTable, $id,$boat_id=null){
         if (request()->ajax()) {
             return $dataTable->ajax();
         }
         return $dataTable->render('dashboard.boat.manage', [
             'page_title'=>'Boat Management',
           //  'offices'=> Helpers::getOfficesKeyValue(),
-            'boat'=> $id?Boat::find($id):null
+            'boat'=> $boat_id?Boat::find($boat_id):null
         ]);
     }
 	 public function table(BoatDataTable $dataTable, $id=null){

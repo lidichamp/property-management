@@ -1,4 +1,4 @@
-@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.layout');
+@extends(Auth::user()->role !=1 ? 'dashboard.operator.layout' : 'dashboard.admin.operator_layout');
 
     @section('sub-body')
         <div class="row">

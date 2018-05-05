@@ -32,7 +32,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function manage(AdminDataTable $dataTable, $id=null){
+    public function manage(AdminDataTable $dataTable, $user_id=null){
 //        dd(request()->route()->parameter('id'));
         if (request()->ajax()) {
             return $dataTable->ajax();
@@ -40,7 +40,7 @@ class AdminController extends Controller
         return $dataTable->render('dashboard.admin.manage', [
             'page_title'=>'Users Management',
             
-            'user'=> $id?User::find($id):null
+            'user'=> $user_id?User::find($user_id):null
         ]);
     }
 

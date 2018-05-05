@@ -31,12 +31,13 @@
                                 <i class="form-group__bar"></i>
 								
                             </div>
+							
 							<div class="form-group form-group--float">
-                                <label>Operator</label><br/>
-                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR'],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
-								<i class="form-group__bar"></i>
+                                <label>Jetty Type</label><br />
+                                {!! Form::select('jetty_type', \App\Jetty::getTypes(), $jetty?$jetty->jetty_type:null, ['placeholder'=>'Choose a jetty type ','class'=>'select2','id'=>'jetty_type']) !!}
+                                <i class="form-group__bar"></i>
                             </div>
-                            
+							
                            </div>
 						   <div class="col-sm-6">
 						   <div class="form-group form-group--float">
@@ -57,13 +58,13 @@
                                 
                                 <i class="form-group__bar"></i>
                             </div>
+							
 							<div class="form-group form-group--float">
-                                <label>Jetty Type</label><br />
-                                {!! Form::select('jetty_type', \App\Jetty::getTypes(), $jetty?$jetty->jetty_type:null, ['placeholder'=>'Choose a jetty type ','class'=>'select2','id'=>'jetty_type']) !!}
-                                <i class="form-group__bar"></i>
+                                <label>Operator</label><br/>
+                                {!! Form::select('operator', ['UNKNOWN'=>'UNKNOWN OPERATOR'],null, ['class'=>'select2', 'id'=>'operator-select']) !!}
+								<i class="form-group__bar"></i>
                             </div>
-							
-							
+                            
 							</div>
 							</div>
                             <div class="card-block center-block text-center align-content-center">

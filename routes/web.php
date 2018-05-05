@@ -64,8 +64,8 @@ Route::group([
 		Route::get('/status_completed/{id?}', 'Dashboard\TripController@endtrip')->name('trip.complete');
 		Route::get('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('trip.cancel');
 		Route::get('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
-		Route::get('/view/{id}', 'Dashboard\TripController@view_trip')->name('trip.view');
-		Route::get('/passenger/{trip_id}/{id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
+		Route::get('/view/{id}/{trip_id}', 'Dashboard\TripController@view_trip')->name('trip.view');
+		Route::get('/passenger/{id}/{trip_id}/{passenger_id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
 		Route::post('/passenger/save/{trip_id}', 'Dashboard\PassengerController@save_passenger')->name('trip.passenger.save');
     });
 	
@@ -75,7 +75,7 @@ Route::group([
         Route::get('/home', 'Dashboard\OperatorsController@index')->name('operator.home');
         Route::get('/manage/{id?}', 'Dashboard\OperatorsController@manage')->name('operator.manage');
         Route::get('/administration/{id}', 'Dashboard\OperatorsController@dashboard')->name('operator.dashboard');
-        Route::get('/manage_boat/{operator_id}/{id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
+        Route::get('/manage_boat/{id}/{boat_id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
         Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
         Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
     });
@@ -83,7 +83,7 @@ Route::group([
         'prefix'=>'users',
     ], function(){
         Route::get('/home', 'Dashboard\AdminController@index')->name('admin.home');
-        Route::get('/manage/{id?}', 'Dashboard\AdminController@manage')->name('admin.manage');
+        Route::get('/manage/{id}/{user_id?}', 'Dashboard\AdminController@manage')->name('admin.manage');
         Route::post('/invite_update/{id?}', 'Dashboard\AdminController@invite_update')->name('admin.invite.update');
         Route::get('/manage/suspend-unsuspend/{id}', 'Dashboard\AdminController@suspend_unsuspend')->name('admin.suspend.unsuspend');
     });
