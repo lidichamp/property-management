@@ -51,7 +51,7 @@ class HomeController extends Controller
                     ])->orWhere('trips.depature_time', '0000-00-00');
 					 })->groupBy('boats.operator')
 		->get();
-		dd($values);
+	
 		$chart = Charts::create('bar', 'highcharts')
         ->title('Operator Trips')
         ->elementLabel('Trips')
