@@ -42,8 +42,9 @@ class JettiesDataTable extends DataTable
     public function query(Jetty $model)
     {
         return $model->newQuery()->select([
-            'jetties.id','jetties.name','jetties.address','jetties.latitude','jetties.longitude'
-        ]);
+            'jetties.id','jetties.name','operators.name as operator','jetties.address','jetties.latitude','jetties.longitude'
+        ])
+		 ->leftJoin('operators', 'jetties.operator', 'operators.id');
            
     }
 
@@ -72,6 +73,7 @@ class JettiesDataTable extends DataTable
         return [
             'id',
             'name',
+			'operator',
             'address'
         ];
     }
