@@ -19,8 +19,11 @@
     @stack('styles')
     @stack('scripts_header')
 </head>
+@if(Auth::user()->role =1)
 <body data-ma-theme="{{ config('roadzoft.roadzoft_theme') }}">
-
+@else
+<body data-ma-theme="teal">
+@endif
     @yield('content')
 
     <!-- Older IE warning message -->

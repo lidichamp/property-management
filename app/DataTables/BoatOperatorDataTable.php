@@ -40,7 +40,7 @@ class BoatOperatorDataTable extends DataTable
     public function query(Boat $model)
     { ;
         return $model->newQuery()->select([
-            'boats.id','boats.name','boats.active', 'boats.make as model','manufacturing_date','registration_id','capacity','jetties.name as home_jetty','operators.name as operator'
+            'boats.id','boats.name','boats.active', 'boats.make as model','manufacturing_date','registration_id','capacity as maximum_capacity','jetties.name as home_jetty','operators.name as operator'
         ])
         ->leftJoin('jetties', 'boats.home_jetty', 'jetties.id')
 		->leftJoin('operators', 'boats.operator', 'operators.id')
@@ -77,7 +77,7 @@ class BoatOperatorDataTable extends DataTable
             'model',
             'manufacturing_date',
 			'registration_id',
-			'capacity'
+			'maximum_capacity'
         ];
     }
 

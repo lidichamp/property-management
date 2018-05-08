@@ -44,7 +44,7 @@
 							<div class="col-sm-6">
                             <div class="form-group form-group--float">
                                 {!! Form::number('capacity', $boat?$boat->capacity:null, ['class'=>'form-control']) !!}
-                                <label>Capacity</label>
+                                <label>Maximum Capacity</label>
                                 <i class="form-group__bar"></i>
                             </div>
                             <div class="form-group form-group--float">

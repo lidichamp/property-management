@@ -46,12 +46,8 @@
                                 {!! Form::select('role', \App\User::getRoles(), $user?$user->role:null, ['class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
-							
-							<div class="form-group form-group--float">
-                                <label>Operator</label><br />
-                                {!! Form::select('operator', \App\Operator::getOperators(), $user?$user->operator:null, ['placeholder'=>'choose an operator','class'=>'select2']) !!}
-                                <i class="form-group__bar"></i>
-                            </div>
+							 {!! Form::hidden('operator',\App\Operator::find(request()->route('id')) ) !!}
+						
                             @if(!$user)
                                 <div class="form-group form-group--float">
                                     {!! Form::password('password', ['class'=>'form-control']) !!}

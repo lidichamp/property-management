@@ -55,16 +55,19 @@
                                 <label>Passenger's Phone</label>
                                 <i class="form-group__bar"></i>
                             </div>
-							
-                            <div class="card-block center-block text-center align-content-center">
-                                <input type="submit" value="Add to trip" class="btn btn-default waves-effect" />
+							<div class="row">
+			   <a href="{{ route('trip.overview',request()->route('id')) }}" class="col-sm-4">
+						<button class="btn btn-warning" type="button"><b><<</b> Back to Trip</button>
+						</a>
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-success waves-effect"><b>+</b> Add to Trip</button>
                             </div>
-                            
+                            </div>
 							
                         {!! Form::close() !!}
                     </div>
                 </div>
-            </div>
                 </div>
             </div>
         </div>

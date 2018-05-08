@@ -126,8 +126,34 @@
 							@endforeach
 							
                           </div>
+						
+						  
             </div>
+			  <div class="row">
+			   <a href="{{ route('trip.overview',request()->route('id')) }}" class="col-sm-4">
+						<button class="btn btn-warning ">Back to Trip</button>
+						</a>@if($trip->status==0)
+						 <a href="{{  route('trip.start', $trip->id) }}" class="col-sm-4">
+						<button class="btn btn-success">Start Trip</button>
+						</a>
+						@elseif($trip->status==1)
+						 <a href="{{  route('trip.complete', $trip->id) }}" class="col-sm-4">
+						 <button class="btn btn-danger ">
+						End Trip
+						</button>
+						</a>
+							@else
+								<div class="col-sm-4"></div>
+						@endif
+						<a href="{{  route('trip.passenger',[request()->route('id'),request()->route('trip_id')]) }}" class="col-sm-4">
+						<button class="btn btn-primary ">
+						Add Passengers
+						</button>
+						</a>
+						  </div>
+						  </div>
                 </div>
+				
             </div>
         </div>
     @endsection

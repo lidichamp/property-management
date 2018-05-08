@@ -101,7 +101,6 @@ class OperatorsController extends Controller
 			'operator'=>'exists:operators,id',
 			'home_jetty'=>'nullable|exists:jetties,id'
         ]);
-
         if($id){
             $boat = Boat::find($id);
             if($boat){
@@ -119,10 +118,11 @@ class OperatorsController extends Controller
             }
         }
         else {
+			
             Boat::create($validatedData);
         }
 
-        return redirect(route('operator.assign.boat'))->withInput(['success'=>true]);
+        return back()->withInput(['success'=>true]);
     }
 	
 	

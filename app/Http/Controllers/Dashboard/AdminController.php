@@ -70,7 +70,7 @@ class AdminController extends Controller
             $user->notify(new AdminInvite($validatedData['password']));
         }
 
-        return redirect(route('admin.manage'))->withInput(['success'=>true]);
+        return back()->withInput(['success'=>true]);
     }
 
     public function suspend_unsuspend(Request $request, $id){

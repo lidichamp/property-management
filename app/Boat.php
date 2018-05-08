@@ -10,9 +10,6 @@ use App\Core\Helpers;
 class Boat extends Model
 {
     use SoftDeletes;
-    use Uuids;
-
-    public $incrementing = false;
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
