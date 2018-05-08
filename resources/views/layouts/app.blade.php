@@ -19,11 +19,16 @@
     @stack('styles')
     @stack('scripts_header')
 </head>
-@if(Auth::user()->role =1)
+
+@if(Auth::user()&&Auth::user()->role==1)
 <body data-ma-theme="{{ config('roadzoft.roadzoft_theme') }}">
-@else
+@elseif(Auth::user()&&Auth::user()->role !=1)
 <body data-ma-theme="teal">
+@else
+	<body data-ma-theme="{{ config('roadzoft.roadzoft_theme') }}">
 @endif
+
+
     @yield('content')
 
     <!-- Older IE warning message -->
