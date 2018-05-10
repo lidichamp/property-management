@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-sm-6">
                             <div class="form-group form-group--float">
-                                {!! Form::text('name', $jetty?$jetty->name:null, ['placeholder'=>' ','class'=>'form-control']) !!}
+                                {!! Form::text('name', $jetty?$jetty->name:null, ['class'=>'form-control']) !!}
                                 <label>Name</label>
                                 <i class="form-group__bar"></i>
 								
