@@ -39,7 +39,7 @@ class OperatorDataTable extends DataTable
         return $model->newQuery()->select([
             DB::raw('count(trips.id) as trips,operators.id,operators.name')
         ])
-		->groupBy('boats.operator')
+		->groupBy('operators.id')
 		->leftJoin('boats','operators.id','boats.operator')
 		->leftJoin('trips','boats.id','trips.boat_id');
     }
