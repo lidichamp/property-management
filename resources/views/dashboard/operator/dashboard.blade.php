@@ -13,7 +13,7 @@
             <div class="quick-stats__item bg-light-green">
                 <div class="quick-stats__info">
                     <h2>{{ \App\User::where('operator',$id)->where('active', 1)->count() }}</h2>
-                    <small>Users</small>
+                    <small>Staff</small>
                 </div>
             </div>
         </div>

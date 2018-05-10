@@ -37,14 +37,13 @@ class OperatorDataTable extends DataTable
     public function query(Operator $model)
     {
         return $model->newQuery()->select([
-            DB::raw('count(trips.id) as trips'),'operators.id','operators.name',DB::raw('count(users.id) as staff')
+            DB::raw('count(trips.id) as trips,operators.id,operators.name')
         ])
-		->leftJoin('users','users.operator','operators.id')
+		->groupBy('boats.operator')
 		->leftJoin('boats','operators.id','boats.operator')
-		->leftJoin('trips','boats.id','trips.boat_id')
-		->groupBy('operators.id');
-           // ->where('role', '!=', User::$SYSTEM_ADMIN_ROLE);
+		->leftJoin('trips','boats.id','trips.boat_id');
     }
+	
 
     /**
      * Optional method if you want to use html builder.
@@ -71,8 +70,7 @@ class OperatorDataTable extends DataTable
         return [
             'id',
             'name',
-			'trips',
-			'staff'
+			'trips'
         ];
     }
 
