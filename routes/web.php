@@ -75,6 +75,7 @@ Route::group([
     ], function(){
         Route::get('/create/{id?}', 'Dashboard\RouteController@index')->name('route.home');
 		Route::post('/add_update/{id?}', 'Dashboard\RouteController@add_update')->name('route.add_update');
+		Route::get('/manage', 'Dashboard\RouteController@manage')->name('route.manage');
     });
 	 Route::group([
         'prefix'=>'operator',

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Core\Returns;
 use App\User;
 use App\Route;
-use App\DataTables\TripDataTable;
+use App\DataTables\RouteDataTable;
 class RouteController extends Controller
 {
 
@@ -55,6 +55,15 @@ class RouteController extends Controller
 
         return redirect(route('route.home'))->withInput(['success'=>true]);
     }
+	   public static function manage(RouteDataTable $dataTable)
+	{
+	if (request()->ajax()) {
+            return $dataTable->ajax();
+        }
+        return $dataTable->render('dashboard.route.table', [
+            'page_title'=>'All Routes'
+        ]);
+	} 
 	
 	
 }
