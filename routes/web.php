@@ -70,7 +70,12 @@ Route::group([
 		Route::get('/passenger/{id}/{trip_id}/{passenger_id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
 		Route::post('/passenger/save/{trip_id}', 'Dashboard\PassengerController@save_passenger')->name('trip.passenger.save');
     });
-	
+			 Route::group([
+        'prefix'=>'route',
+    ], function(){
+        Route::get('/create/{id?}', 'Dashboard\RouteController@index')->name('route.home');
+		Route::post('/add_update/{id?}', 'Dashboard\RouteController@add_update')->name('route.add_update');
+    });
 	 Route::group([
         'prefix'=>'operator',
     ], function(){
