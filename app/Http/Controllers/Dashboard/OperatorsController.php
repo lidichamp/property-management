@@ -79,8 +79,23 @@ class OperatorsController extends Controller
 
         return redirect(route('operator.manage'))->withInput(['success'=>true]);
     }
-	
-	  public function manage_boat(BoatOperatorDataTable $dataTable,$operator,$id=null){
+	public function activate_deactivate($id)
+	{	$operator=Operator::find($id);
+		if($operator->active==1)
+		{
+			$operator->active=0;
+			$operator->save();
+			return back()->withInput(['success'=>true]);
+		}
+		elseif($operator->active==0)
+		{
+			$operator->active=1;
+			$operator->save();
+			return back()->withInput(['success'=>true]);
+		}
+		return back()->withErrors(['Resource not found.']);
+	}
+	public function manage_boat(BoatOperatorDataTable $dataTable,$operator,$id=null){
 		if (request()->ajax()) {
             return $dataTable->ajax();
         }

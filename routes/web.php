@@ -45,6 +45,8 @@ Route::group([
         Route::get('/manage/{id?}', 'Dashboard\BoatsController@manage')->name('boat.manage');
         Route::post('/add_update/{id?}', 'Dashboard\BoatsController@boat_save')->name('boat.save');
 		Route::get('/table','Dashboard\BoatsController@table')->name('boat.table');
+		 Route::get('/activate_deactivate/{id}', 'Dashboard\BoatsController@activate_deactivate')->name('boat.activate_deactivate');
+      
     });
 	 Route::group([
         'prefix'=>'jetty',
@@ -74,6 +76,7 @@ Route::group([
     ], function(){
         Route::get('/home', 'Dashboard\OperatorsController@index')->name('operator.home');
         Route::get('/manage/{id?}', 'Dashboard\OperatorsController@manage')->name('operator.manage');
+        Route::get('/activate_deactivate/{id}', 'Dashboard\OperatorsController@activate_deactivate')->name('operator.activate_deactivate');
         Route::get('/administration/{id}', 'Dashboard\OperatorsController@dashboard')->name('operator.dashboard');
         Route::get('/manage_boat/{id}/{boat_id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
         Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');

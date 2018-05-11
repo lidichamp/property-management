@@ -17,8 +17,17 @@ class BoatOperatorDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($one){
-                $menu = '<a href="/manage_boat/'.request()->route('operator_id').'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
-              
+                $menu = '<a href="/manage_boat/'.request()->route('id').'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
+				if($one->active==0)
+				{
+					$menu .= '<a href="'.route('boat.activate_deactivate', $one->id).'" title="Activate" style="margin-right: 10px"><i class="zmdi zmdi-check text-success"></i></a>';
+                
+				}
+				 if($one->active==1)
+				{
+					$menu .= '<a href="'.route('boat.activate_deactivate', $one->id).'" title="Deactivate" style="margin-right: 10px"><i class="zmdi zmdi-close text-danger"></i></a>';
+                
+				}
                 return $menu;
             })
             ->setRowClass(function($one){
@@ -44,7 +53,7 @@ class BoatOperatorDataTable extends DataTable
         ])
         ->leftJoin('jetties', 'boats.home_jetty', 'jetties.id')
 		->leftJoin('operators', 'boats.operator', 'operators.id')
-        ->where('operators.id',request()->route('operator_id'));
+        ->where('operators.id',request()->route('id'));
     }
 
     /**

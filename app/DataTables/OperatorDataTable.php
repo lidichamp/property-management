@@ -19,11 +19,24 @@ class OperatorDataTable extends DataTable
             ->addColumn('action', function($one){
                 $menu = '<a href="'.route('operator.manage', $one->id).'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
                 $menu .= '<a href="'.route('operator.dashboard', $one->id).'" title="Dashboard" style="margin-right: 10px"><i class="zmdi zmdi-open-in-browser text-success"></i></a>';
-                return $menu;
+                if($one->active==0)
+				{
+					$menu .= '<a href="'.route('operator.activate_deactivate', $one->id).'" title="Activate" style="margin-right: 10px"><i class="zmdi zmdi-check text-success"></i></a>';
+                
+				}
+				 if($one->active==1)
+				{
+					$menu .= '<a href="'.route('operator.activate_deactivate', $one->id).'" title="Deactivate" style="margin-right: 10px"><i class="zmdi zmdi-close text-danger"></i></a>';
+                
+				}
+				return $menu;
             })
             ->setRowClass(function($one){
                 if(request()->route()->parameter('id') == $one->id){
                     return 'text-warning';
+                }
+				if(!$one->active){
+                    return 'text-danger';
                 }
             });
     }
@@ -37,7 +50,7 @@ class OperatorDataTable extends DataTable
     public function query(Operator $model)
     {
         return $model->newQuery()->select([
-            DB::raw('count(trips.id) as trips,operators.id,operators.name')
+            DB::raw('count(trips.id) as trips,operators.id,operators.name,operators.active')
         ])
 		->groupBy('operators.id')
 		->leftJoin('boats','operators.id','boats.operator')

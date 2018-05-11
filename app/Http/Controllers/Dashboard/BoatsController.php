@@ -45,6 +45,23 @@ class BoatsController extends Controller
         ]);
 
     }
+	
+	public function activate_deactivate($id)
+	{	$boat=Boat::find($id);
+		if($boat->active==1)
+		{
+			$boat->active=0;
+			$boat->save();
+			return back()->withInput(['success'=>true]);
+		}
+		elseif($boat->active==0)
+		{
+			$boat->active=1;
+			$boat->save();
+			return back()->withInput(['success'=>true]);
+		}
+		return back()->withErrors(['Resource not found.']);
+	}
 	  public function manage(BoatOperatorDataTable $dataTable, $id,$boat_id=null){
         if (request()->ajax()) {
             return $dataTable->ajax();
