@@ -19,8 +19,36 @@ class Passengers{
         return static::validates_and_exec($payload,$trip_id,$id);
 		
     }
-
+	
+	public static function save(Request $request,$id){
+        $payload = Helpers::remove_nulls($request->all());
+        return static::validate_and_save($payload,$id);
+		
+    }
  
+	private static function validate_and_save($payload,$id){
+		
+        $validate_array = [
+            'name'=>'required',
+            'phone'=>'required',
+			'kin'=>'required',
+            'kin_phone'=>'required',
+            'age_range'=>'nullable'
+         ];
+	   $passengerModel = new Passenger();
+      
+       $passenger = Passenger::create(collect($payload)->only($passengerModel->getFillable())->toArray()); 
+	   
+	   if($passenger)
+	   {
+		     return Returns::ok([
+            'passenger'=> $passenger->id->string
+        ]);
+             
+            }
+		      return Returns::notfoundError(['err'=>'Rider not added.']);
+	   }
+	
     private static function validates_and_exec($payload,$trip_id,$id){
 		
         $validate_array = [
