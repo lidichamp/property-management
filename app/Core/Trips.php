@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Core\Returns;
 use App\Trip;
 use App\Trip_staff;
+use App\Trip_passenger;
 use Response;
 use Validator;
 /*
@@ -120,7 +121,7 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-	public static function start($id)
+	public static function dashboard_start($id)
 	{
 		$trip=Trip::find($id);
 		$trip->status=1;
@@ -130,7 +131,35 @@ class Trips{
         }
         return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
 	}
-		public static function complete($id)
+	public static function start($id,$request)
+	{	$trip_passenger_array=[];
+		$trip=Trip::find($id);
+		$trip->status=1;
+		$trip->update();
+		   if($trip){
+			$detail=[];
+		   $payload = Helpers::remove_nulls($request->all());
+            foreach ($payload['manifest'] as $key=>$value){
+                $details['trip_id'] = $id;
+                $details['passenger_id']= $value;
+				array_push($detail,$details);	
+                }
+                //try and catch error for a rollback if error error
+                try{
+				foreach($detail as $pointer=>$array_value)
+                    array_push($trip_passenger_array, Trip_passenger::create($array_value)->toArray());
+					return $trip;
+					
+                }
+				catch(QueryException $ex){
+                    $trip->delete();
+                    return Returns::systemError($ex->getMessage());
+                }
+		   }
+        return Returns::notfoundError(['err'=>'Trip not found. Check the id']);
+	}
+	
+		public static function complete($id,$payload)
 	{
 		$trip=Trip::find($id);
 		$trip->status=3;

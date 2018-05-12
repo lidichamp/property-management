@@ -29,8 +29,8 @@ class TripController extends Controller
 		return Response::json(Returns::ok(Trips::get_by_operator($operator)));
 	}
 	
-	public static function start($id){
-		return Response::json(Returns::ok(Trips::start($id)));
+	public static function start($id,Request $request){
+		return Response::json(Returns::ok(Trips::start($id,$request)));
 	}
 	public static function get(Request $request, $id)
 	{

@@ -56,7 +56,7 @@ class TripController extends Controller
         return $dataTable->with('operator',$operator)->render('dashboard.trip.table');
 	} 
 	 public static function starttrip($id)
-	{ $process = collect(Trips::start($id));
+	{ $process = collect(Trips::dashboard_start($id));
 		
         if($process->get('code') == Returns::$ok_response){
             return back()->withInput(['success'=>true]);

@@ -64,6 +64,9 @@ class RouteController extends Controller
             'page_title'=>'All Routes'
         ]);
 	} 
-	
+	public static assign_operator($id)
+	{
+		return view('dashboard.route.operator');
+	}
 	
 }
