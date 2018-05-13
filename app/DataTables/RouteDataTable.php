@@ -16,7 +16,10 @@ class RouteDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-
+			->addColumn('action', function($one) {
+				$menu = '<a href="'.route('route.operator',$one->id).'" title="Assign Operators" style="margin-right: 10px"><i class="zmdi zmdi-plus text-warning"></i></a>';
+				return $menu;
+			})
             ->setRowClass(function($one){
                 if(request()->route()->parameter('id') == $one->id){
                     return 'text-warning';

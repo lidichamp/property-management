@@ -9,7 +9,9 @@ use App\Trip_passenger;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
 use App\User;
+use App\Routes_operator;
 use App\Route;
+use App\Core\Helpers;
 use App\DataTables\RouteDataTable;
 class RouteController extends Controller
 {
@@ -64,9 +66,18 @@ class RouteController extends Controller
             'page_title'=>'All Routes'
         ]);
 	} 
-	public static assign_operator($id)
+	public static function assign_operator($id)
 	{
 		return view('dashboard.route.operator');
 	}
-	
+	public static function save_operator(Request $request)
+	{
+		
+		   $payload = Helpers::remove_nulls($request->all());
+		   $route_operator=new Routes_operator();
+		   $route_operator->operator_id=$payload['operator'];
+		   $route_operator->route_id=$payload['route'];
+		   $route_operator->save();
+			 return redirect(route('route.operator',$payload['route']))->withInput(['success'=>true]);
+		   }
 }

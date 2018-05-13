@@ -83,6 +83,8 @@ Route::group([
         Route::get('/create/{id?}', 'Dashboard\RouteController@index')->name('route.home');
 		Route::post('/add_update/{id?}', 'Dashboard\RouteController@add_update')->name('route.add_update');
 		Route::get('/manage', 'Dashboard\RouteController@manage')->name('route.manage');
+		Route::get('manage/assign_operator/{id}', 'Dashboard\RouteController@assign_operator')->name('route.operator');
+		Route::post('/save_operator', 'Dashboard\RouteController@save_operator')->name('route.save.operator');
     });
 	 Route::group([
         'prefix'=>'operator',
