@@ -20,5 +20,10 @@ class Route extends Model
 
     protected $fillable = ['from_jetty','to_jetty','ref','km_estimate','note'];
 
-
+public static function getRoutes()
+	{
+		
+			$types = Operator::pluck('name','id')->toArray();
+            return $types;
+	}
 }

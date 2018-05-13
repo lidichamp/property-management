@@ -26,9 +26,8 @@ class Trips{
 		
         $validate_array = [
             'boat_id'=>'required|exists:boats,id',
-            'from_jetty'=>'required|exists:jetties,id',
 			'creator'=>'required|exists:users,id',
-            'to_jetty'=>'required|exists:jetties,id',
+            'route'=>'required|exists:routes,id',
             'depature_type'=>'required|numeric|in:1,2',
             'depature_time'=>'required'
          ];
@@ -36,10 +35,7 @@ class Trips{
         if($validate->fails()){
             return Returns::validationError($validate->errors());
         }
-		if($payload['from_jetty']==$payload['to_jetty'])
-		{
-			return Returns::validationError('Depature and destination Jtty cannot be the same.');
-		}
+		
         return static::process_trip($payload);
     }
     
@@ -63,8 +59,13 @@ class Trips{
         //first insert into the trips table
         $tripModel = new Trip();
         $trip_staff_array = [];
+		$route=\App\Route::find($payload['route']);
+		
+		$payload['from_jetty']=$route->from_jetty;
+		$payload['to_jetty']=$route->to_jetty;
+		
         $trip = Trip::create(collect($payload)->only($tripModel->getFillable())->toArray());
-		//dd($payload);
+		
         if($trip){
 			//dd($payload['staff']);
 			$detail=[];

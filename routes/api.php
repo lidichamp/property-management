@@ -76,4 +76,7 @@ Route::group([
    Route::get('/riders', function(Request $request){
         return Returns::ok(\App\Passenger::all());
     })->name('api.riders');
+	Route::get('/routes', function(Request $request){
+        return Returns::ok(\App\Route::getRoutes());
+    })->name('api.routes');
 });

@@ -32,14 +32,8 @@
                                 <i class="form-group__bar"></i>
                             </div>
 							<div class="form-group form-group--float">
-                                <label>From Jetty</label><br />
-                                {!! Form::select('from_jetty', \App\Jetty::getJetty(), $trip?$trip->from_jetty:null, ['placeholder'=>'choose a depature jetty ','class'=>'select2']) !!}
-                                <i class="form-group__bar"></i>
-                            </div>
-							
-							<div class="form-group form-group--float">
-                                <label>To Jetty</label><br />
-                                {!! Form::select('to_jetty', \App\Jetty::getJetty(), $trip?$trip->to_jetty:null, ['placeholder'=>'choose an arrival jetty ','class'=>'select2']) !!}
+                                <label>Route</label><br />
+                                {!! Form::select('route', \App\Route::getRoutes(),[], ['placeholder'=>'choose a Route ','class'=>'select2']) !!}
                                 <i class="form-group__bar"></i>
                             </div>
 							

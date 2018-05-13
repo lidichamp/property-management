@@ -34,7 +34,10 @@ class RouteController extends Controller
 			'ref'=>'nullable',
 			'note'=>'nullable'
         ]);
-
+			if($payload['from_jetty']==$payload['to_jetty'])
+		{
+			return back()->withErrors(['Depature and destination Jetty cannot be the same.']);
+		}
         if($id){
             $route = Route::find($id);
             if($route){
