@@ -26,7 +26,7 @@ class RouteController extends Controller
 	
 	 public function add_update(Request $request, $id=null){
         $validatedData = $request->validate([
-            'name'=>'nullable|max:150',
+            'name'=>'required|max:150',
             'from_jetty'=>'required|exists:jetties,id',
 			'creator'=>'required|exists:users,id',
             'to_jetty'=>'required|exists:jetties,id',

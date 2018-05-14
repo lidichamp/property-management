@@ -18,7 +18,7 @@ class Route extends Model
 
     protected $hidden = ['deleted_at'];
 
-    protected $fillable = ['from_jetty','to_jetty','ref','km_estimate','note'];
+    protected $fillable = ['from_jetty','to_jetty','ref','km_estimate','note','name'];
 
 public static function getRoutes()
 	{
