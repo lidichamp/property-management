@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\DataTables\OperatorDataTable;
 use App\DataTables\BoatOperatorDataTable;
 use DB;
+use Carbon\Carbon;
 use Charts;
 class OperatorsController extends Controller
 {
@@ -166,7 +167,9 @@ class OperatorsController extends Controller
 		$operator=Operator::find($id);
 		$operator->renewed++;
 		$operator->save();
-		dd($operator);
+		$operator->expiration=Carbon::parse($operator->registration_date)->addYears($operator->renewed);
+		$operator->save();
+		 return back()->withInput(['success'=>true]);
 	}
 	
 

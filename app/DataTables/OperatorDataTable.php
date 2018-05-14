@@ -5,6 +5,7 @@ namespace App\DataTables;
 use App\Operator;
 use Yajra\DataTables\Services\DataTable;
 use DB;
+use Carbon\Carbon;
 class OperatorDataTable extends DataTable
 {
     /**
@@ -19,7 +20,8 @@ class OperatorDataTable extends DataTable
             ->addColumn('action', function($one){
                 $menu = '<a href="'.route('operator.manage', $one->id).'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
                 $menu .= '<a href="'.route('operator.dashboard', $one->id).'" title="Dashboard" style="margin-right: 10px"><i class="zmdi zmdi-open-in-browser text-success"></i></a>';
-                if($one->active==0)
+                $menu .= '<a href="'.route('operator.renew', $one->id).'" title="Renew" style="margin-right: 10px"><i class="zmdi zmdi-rotate-cw text-success"></i></a>';
+               if($one->active==0)
 				{
 					$menu .= '<a href="'.route('operator.activate_deactivate', $one->id).'" title="Activate" style="margin-right: 10px"><i class="zmdi zmdi-check text-success"></i></a>';
                 
@@ -38,8 +40,12 @@ class OperatorDataTable extends DataTable
 				if(!$one->active){
                     return 'text-danger';
                 }
-				if($one->registration_date->addYears($one->renewed) > $Carbon::today()){
+				if(Carbon::parse($one->registration_date)->addYears($one->renewed) <Carbon::today()){
                     return 'bg-danger';
+                }
+				
+				if(Carbon::parse($one->registration_date)->addYears($one->renewed)->diffInDays(Carbon::today())<30 && Carbon::parse($one->registration_date)->addYears($one->renewed)->diffInDays(Carbon::today())>0){
+					return 'bg-warning';
                 }
             });
     }

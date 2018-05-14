@@ -26,4 +26,5 @@ public static function getRoutes()
 			$types = Route::pluck('name','id')->toArray();
             return $types;
 	}
+	
 }

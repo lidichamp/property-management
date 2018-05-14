@@ -79,4 +79,7 @@ Route::group([
 	Route::get('/routes', function(Request $request){
         return Returns::ok(\App\Route::getRoutes());
     })->name('api.routes');
+	Route::get('/all/routes', function(Request $request){
+        return Returns::ok(\App\Route::all());
+    })->name('api.all.routes');
 });

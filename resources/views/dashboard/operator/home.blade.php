@@ -17,6 +17,16 @@
                 </div>
             </div>
         </div>
+		<div class="col-sm-6 col-md-3">
+            <div class="quick-stats__item bg-yellow">
+                <div class="quick-stats__info">
+				
+                    <h2>{{\App\Operator::where('expiration','<',Carbon\Carbon::today())->count()}}</h2>
+					
+                    <small>Expired Operators</small>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-6 col-md-3">
             <div class="quick-stats__item bg-red">
                 <div class="quick-stats__info">
@@ -25,6 +35,7 @@
                 </div>
             </div>
         </div>
+		   
     </div>
 	<div class="col-sm-12">
 	<div class="card-block">
