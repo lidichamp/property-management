@@ -38,6 +38,9 @@ class OperatorDataTable extends DataTable
 				if(!$one->active){
                     return 'text-danger';
                 }
+				if($one->registration_date->addYears($one->renewed) > $Carbon::today()){
+                    return 'bg-danger';
+                }
             });
     }
 
@@ -50,7 +53,7 @@ class OperatorDataTable extends DataTable
     public function query(Operator $model)
     {
         return $model->newQuery()->select([
-            DB::raw('count(trips.id) as trips,operators.id,operators.name,operators.active')
+            DB::raw('count(trips.id) as trips,operators.id,operators.name,operators.active,operators.registration_date,operators.renewed')
         ])
 		->groupBy('operators.id')
 		->leftJoin('boats','operators.id','boats.operator')

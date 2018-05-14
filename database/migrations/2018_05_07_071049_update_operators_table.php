@@ -14,7 +14,7 @@ class UpdateOperatorsTable extends Migration
     public function up()
     {
      Schema::table('operators', function (Blueprint $table) {
-    $table->integer('renewed');
+    $table->integer('renewed')->default(1);
 });
     }
 
