@@ -23,7 +23,7 @@ class Route extends Model
 public static function getRoutes()
 	{
 		
-			$types = Operator::pluck('name','id')->toArray();
+			$types = Route::pluck('name','id')->toArray();
             return $types;
 	}
 }

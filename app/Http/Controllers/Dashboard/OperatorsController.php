@@ -161,6 +161,13 @@ class OperatorsController extends Controller
         ]);
     }
 
-		
+	public function renew($id)
+	{
+		$operator=Operator::find($id);
+		$operator->renewed++;
+		$operator->save();
+		dd($operator);
+	}
+	
 
 }

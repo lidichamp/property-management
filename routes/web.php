@@ -96,6 +96,7 @@ Route::group([
         Route::get('/manage_boat/{id}/{boat_id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
         Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
         Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
+		Route::get('/renew/{id}', 'Dashboard\OperatorsController@renew')->name('operator.renew');
     });
     Route::group([
         'prefix'=>'users',
