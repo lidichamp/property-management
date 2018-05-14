@@ -34,6 +34,7 @@ class RouteController extends Controller
 			'ref'=>'nullable',
 			'note'=>'nullable'
         ]);
+		 $payload = Helpers::remove_nulls($request->all());
 			if($payload['from_jetty']==$payload['to_jetty'])
 		{
 			return back()->withErrors(['Depature and destination Jetty cannot be the same.']);
