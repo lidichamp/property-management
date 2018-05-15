@@ -23,7 +23,7 @@
 				
                     <h2>{{\App\Operator::where('expiration','<',Carbon\Carbon::today())->count()}}</h2>
 					
-                    <small>Expired Operators</small>
+                    <small>Past Due</small>
                 </div>
             </div>
         </div>

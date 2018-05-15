@@ -17,6 +17,11 @@ class Passenger extends Model
     protected $dates = [ 'created_at', 'updated_at'];
 
     protected $fillable = ['name','phone','kin','kin_phone','age_range'];
-
+public static function getPassenger()
+	{
+		
+			$types = Passenger::pluck('name','id')->toArray();
+            return $types;
+	}
 
 }

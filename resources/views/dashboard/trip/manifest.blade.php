@@ -7,7 +7,7 @@
             <div class="col-sm-7">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Add Riders</h2>
+                        <h2 class="card-title">Add Passengers</h2>
                         <small class="card-subtitle"></small>
                     </div>
 
@@ -23,37 +23,14 @@
                                 </div>
                             @endif
                             @if(old('success'))
-                                <div class="alert alert-success text-center">Request was Successful</div>
+                                <div class="alert alert-success text-center">Passenger added to the manifest</div>
                             @endif
 							
-                            <div class="form-group form-group--float">
-                                {!! Form::text('name', $passenger?$passenger->name:null, ['class'=>'form-control']) !!}
-                                <label>Passenger's Name</label>
-                                <i class="form-group__bar"></i>
-                            </div>
-							
-                            <div class="form-group form-group--float">
-                                {!! Form::text('kin', $passenger?$passenger->kin:null, ['class'=>'form-control']) !!}
-                                <label>Next of Kin Name</label>
-                                <i class="form-group__bar"></i>
-                            </div>
-							
-                            <div class="form-group form-group--float">
-                                {!! Form::text('kin_phone', $passenger?$passenger->kin_phone:null, ['class'=>'form-control']) !!}
-                                <label>Next of Kin Phone</label>
-                                <i class="form-group__bar"></i>
-                            </div>
-							
-							 <div class="form-group form-group--float">
-                                <label>Age Range</label><br />
-                                {!! Form::select('age_range', [1=>'under 10',2=>'10 to 20',3=>'above 20'], $passenger?$passenger->age_range:null,['class'=>'select2']) !!}
-                                <i class="form-group__bar"></i>
-                            </div>
-                      
-                            <div class="form-group form-group--float">
-                                {!! Form::text('phone', $passenger?$passenger->phone:null, ['class'=>'form-control']) !!}
-                                <label>Passenger's Phone</label>
-                                <i class="form-group__bar"></i>
+                       <div class="form-group form-group--float">
+                                <label>Passenger</label><br />
+                                {!! Form::select('passenger_id', \App\Passenger::getPassenger(), [], ['placeholder'=>' ','class'=>'select2']) !!}
+                                {{ Form::hidden('trip_id', 'secret')}}
+								<i class="form-group__bar"></i>
                             </div>
 							<div class="row">
 			   <a href="{{ route('trip.overview',request()->route('id')) }}" class="col-sm-4">
@@ -61,7 +38,7 @@
 						</a>
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4">
-                                <button type="submit" class="btn btn-success waves-effect"><b>+</b> Add Passenger</button>
+                                <button type="submit" class="btn btn-success waves-effect"><b>+</b> Add to Trip</button>
                             </div>
                             </div>
 							

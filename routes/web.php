@@ -67,8 +67,9 @@ Route::group([
 		Route::get('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('trip.cancel');
 		Route::get('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
 		Route::get('/view/{id}/{trip_id}', 'Dashboard\TripController@view_trip')->name('trip.view');
-		Route::get('/passenger/{id}/{trip_id}/{passenger_id?}', 'Dashboard\PassengerController@index')->name('trip.passenger');
-		Route::post('/passenger/save/{trip_id}', 'Dashboard\PassengerController@save_passenger')->name('trip.passenger.save');
+		Route::get('/passenger/{id}/{trip_id}', 'Dashboard\TripController@show_manifest')->name('trip.passenger');
+		Route::post('/passenger/save/{trip_id}', 'Dashboard\TripController@add_manifest')->name('trip.passenger.save');
+		
     });
 	 Route::group([
         'prefix'=>'rider',

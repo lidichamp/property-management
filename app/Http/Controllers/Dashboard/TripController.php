@@ -9,6 +9,7 @@ use App\Trip_staff;
 use App\Trip_passenger;
 use App\Http\Controllers\Controller;
 use App\Core\Returns;
+use App\Core\Helpers;
 use App\User;
 use App\DataTables\TripDataTable;
 class TripController extends Controller
@@ -118,4 +119,19 @@ class TripController extends Controller
             return back()->withErrors($error)->withInput();
         }
     }
+	
+	public function show_manifest($id,$trip_id)
+	{
+		return view('dashboard.trip.manifest', [
+                'page_title'=>'Add Manifest ']);
+	}
+		public function add_manifest(Request $request)
+	{
+		 $payload = Helpers::remove_nulls($request->all());
+		 $manifest= new Trip_passenger();
+		 $manifest->passenger_id=$payload['passenger_id'];
+		 $manifest->trip_id=$payload['trip_id'];
+		 $manifest->save();
+		 return back()->withInput(['success'=>true]);
+	}
 }
