@@ -15,9 +15,7 @@ class User extends Authenticatable
     public static $OPERATOR_ADMIN = 2;
     public static $ASSITANT_ROLE = 3;
     public static $BOAT_MEN_ROLE = 4;
-	public static $BOAT_SAILOR_ROLE = 5;
-	public static $LASWA_ADMIN=6;
-    public static $NO_ROLE = 0;
+    public static $LANDLORD = 0;
 
     /**
      * The attributes that are mass assignable.
@@ -39,13 +37,11 @@ class User extends Authenticatable
 
     public static function getRoles(){
         return [
-            0=>'NO ROLE',
+            0=>'LANDLORD',
 			1=>'SUPER ADMIN',
-            2=>'OPERATOR ADMIN',
-            3=>'ASSITANT',
-            4=>'BOAT MAN',
-			5=>'SAILOR',
-			6=>'LASWA'
+            2=>'CARE TAKER',
+            3=>'TENANT',
+            4=>'TENANT DEPENDANT/SPOUSE'
         ];
     }
 
@@ -69,13 +65,10 @@ class User extends Authenticatable
 	   }
 	   return $values;
     }
-    public function home_jetty(){
-        return $this->hasOne('App\Jetty', 'id', 'jetty_id');
+    public static function getUserbyRole($operator){
+        $users=User::where('role',$operator)->pluck('name','id')->toArray();
+
+        return $users;
     }
 
-
-    public static function mobile_auth($user_id){
-        return DB::table('oauth_access_tokens')->where('user_id', $user_id)
-            ->where('revoked', 0)->get();
-    }
 }

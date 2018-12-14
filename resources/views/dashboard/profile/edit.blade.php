@@ -40,11 +40,11 @@
                         <i class="form-group__bar"></i>
                     </div>
 
-                    <div class="form-group">
-                        <label>Home Jetty</label><br />
-                        <strong>{{ $found_user->home_jetty?\App\Jetty::getName($found_user->home_jetty) :'NONE' }}</strong>
-                        <i class="form-group__bar"></i>
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label>Home Jetty</label><br />--}}
+                        {{--<strong>{{ $found_user->home_jetty?\App\Jetty::getName($found_user->home_jetty) :'NONE' }}</strong>--}}
+                        {{--<i class="form-group__bar"></i>--}}
+                    {{--</div>--}}
 
                     <div class="form-group">
                         <label>Picture</label><br />

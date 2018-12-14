@@ -64,7 +64,7 @@ class Passengers{
 		 ->leftJoin('boats','trips.boat_id','boats.id');
 		 if($passengers_onboard==$capacity->value('capacity'))
 		 {
-			  return Returns::validationError('The boat for this trip is full');
+			  return Returns::validationError('The apartment for this trip is full');
 		 } 
 		 
         $validate = Validator::make($payload, $validate_array);

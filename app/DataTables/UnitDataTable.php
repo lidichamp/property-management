@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Unit;
 use Yajra\DataTables\Services\DataTable;
 
-class AdminDataTable extends DataTable
+class UnitDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -17,17 +17,18 @@ class AdminDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($one){
-                $menu = '<a href="'.route('admin.manage', $one->id).'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
-                if($one->active) {
-                    $menu .= '<a href="' . route('admin.suspend.unsuspend', $one->id) . '" title="Suspend"><i class="zmdi zmdi-close-circle-o text-danger"></i></a>';
-                }
-                else{
-                    $menu .= '<a href="' . route('admin.suspend.unsuspend', $one->id) . '" title="Re-Activate"><i class="zmdi zmdi-check-circle text-success"></i></a>';
-                }
+                $menu = '<a href="/manage'.'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
+				if($one->occupied==0)
+                                {
+                                    $menu .= '<a href="'.route('unit.activate_deactivate', $one->id).'" title="Occupy" style="margin-right: 10px"><i class="zmdi zmdi-check text-danger"></i></a>';
+
+                                }
+                                if($one->occupied==1)
+                                {
+                                    $menu .= '<a href="'.route('unit.activate_deactivate', $one->id).'" title="Unoccupy" style="margin-right: 10px"><i class="zmdi zmdi-close text-success"></i></a>';
+
+                                }
                 return $menu;
-            })
-            ->editColumn('role', function($one){
-                return User::getRoles()[$one->role];
             })
             ->setRowClass(function($one){
                 if(request()->route()->parameter('id') == $one->id){
@@ -42,14 +43,17 @@ class AdminDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\Boat $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
-    {
+    public function query(Unit $model)
+    { ;
         return $model->newQuery()->select([
-            'users.id','users.name', 'active', 'role'
-        ]);
+            'units.id','units.name','units.occupied', 'units.rental_amount','units.contact','units.security_deposit','apartments.name as apartment','users.name as landlord','apartments.address','apartments.state'
+        ])
+
+		->leftJoin('apartments', 'units.apartment_id', 'apartments.id')
+		->leftJoin('users', 'apartments.owner_id', 'users.id');
     }
 
     /**
@@ -77,7 +81,13 @@ class AdminDataTable extends DataTable
         return [
             'id',
             'name',
-            'role'
+			'rental_amount',
+			'contact',
+			'state',
+            'landlord',
+            'apartment',
+			'address',
+			'security_deposit'
         ];
     }
 
@@ -88,6 +98,6 @@ class AdminDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Admin_' . date('YmdHis');
+        return 'Unit_' . date('YmdHis');
     }
 }

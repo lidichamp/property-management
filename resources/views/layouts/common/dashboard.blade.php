@@ -137,15 +137,15 @@
 
                 </ul>
                 <ul class="nav top-menu">
-					<li class="nav-item {{ str_contains(request()->path(), 'dashboard/home')?'active':'' }}"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+					<li class="nav-item {{ str_contains(request()->path(), 'dashboard/profile')?'active':'' }}"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
 				@if(Auth::user()->role != 1 )
 					<li class="nav-item {{ str_contains(request()->path(), 'dashboard/operator/administration')?'active':'' }}"><a class="nav-link" href="{{ route('operator.dashboard',Auth::user()->operator) }}">{{\App\Operator::find(Auth::user()->operator)->name}} Dashboard </a></li>
 				@else
-                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/jetty')?'active':'' }}"><a class="nav-link" href="{{ route('jetty.home') }}">Jetties</a></li>
-                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/operator')?'active':'' }}"><a class="nav-link" href="{{ route('operator.home') }}">Operators</a></li>
-                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/boat')?'active':'' }}"><a class="nav-link" href="{{ route('boat.home') }}">Boats</a></li>
-				           <li class="nav-item {{ str_contains(request()->path(), 'dashboard/rider')?'active':'' }}"><a class="nav-link" href="{{ route('rider.home') }}">Riders</a></li>
-				   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/route')?'active':'' }}"><a class="nav-link" href="{{ route('route.home') }}">Routes</a></li>
+                   <li class="nav-item {{ str_contains(request()->path(), 'unit')?'active':'' }}"><a class="nav-link" href="{{ route('unit.home') }}">Units</a></li>
+                   <li class="nav-item {{ str_contains(request()->path(), 'dashboard/user')?'active':'' }}"><a class="nav-link" href="{{ route('admin.add') }}">Users</a></li>
+                   <li class="nav-item {{ str_contains(request()->path(), 'apartment')?'active':'' }}"><a class="nav-link" href="{{ route('apartment.home') }}">Apartments</a></li>
+				           {{--<li class="nav-item {{ str_contains(request()->path(), 'dashboard/rider')?'active':'' }}"><a class="nav-link" href="{{ route('rider.home') }}">Tenants</a></li>--}}
+				   {{--<li class="nav-item {{ str_contains(request()->path(), 'dashboard/route')?'active':'' }}"><a class="nav-link" href="{{ route('route.home') }}">Rents</a></li>--}}
 				@endif	
                 </ul>
             </header>
@@ -157,7 +157,7 @@
 
                     <footer class="footer hidden-xs-down">
                         <p><small>{{ ' v'.config('roadzoft.current_version') }}</small></p>
-                        <p>&copy; 2018 LoftyInc Allied Partners Ltd.</p>
+                        <p>&copy; 2018 Hafeez Gbenle.</p>
 
                         <ul class="nav footer__nav">
                         </ul>

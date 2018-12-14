@@ -37,7 +37,7 @@ Route::group([
 });
 
 Route::group([
-    'prefix'=>'boat',
+    'prefix'=>'apartment',
     'middleware'=>['auth:api']
 ], function(){
     Route::get('/all', 'Api\BoatController@get_all')->middleware('scope:monitor');

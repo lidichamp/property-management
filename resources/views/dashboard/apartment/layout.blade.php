@@ -1,7 +1,7 @@
 @extends('layouts.common.dashboard')
 @section('body')
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="user">
                 <div class="user__info" data-toggle="dropdown">
                     <img class="user__img" src="{{ asset('img/assets/profile_pics_placeholder.jpg') }}" alt="">
@@ -13,14 +13,13 @@
             </div>
 
             <ul class="navigation">
-                <li class="{{ str_contains(request()->path(), 'add')?'navigation__active':'' }}"><a href="{{ route('admin.add') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
-                <li class="{{ str_contains(request()->path(), 'manage')?'navigation__active':'' }}"><a href="{{ route('admin.manage') }}"><i class="zmdi zmdi-storage"></i> Manage</a></li>
-                {{--<li class="{{ str_contains(request()->path(), 'add')?'navigation__active':'' }}"><a href="{{ route('admin.add') }}"><i class="zmdi zmdi-plus"></i> Invite</a></li>--}}
+                <li class="{{ str_contains(request()->path(), 'home')?'navigation__active':'' }}"><a href="{{ route('apartment.home') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                <li class="{{ str_contains(request()->path(), 'table')?'navigation__active':'' }}"><a href="{{ route('apartment.table')}}"><i class="zmdi zmdi-storage"></i> Manage</a></li>
 
             </ul>
 
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
             @yield('sub-body')
         </div>
     </div>

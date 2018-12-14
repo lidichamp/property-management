@@ -615,7 +615,7 @@
             ':roller_coaster:',
             ':ship:',
             ':speedboat:',
-            ':boat:',
+            ':apartment:',
             ':sailboat:',
             ':rowboat:',
             ':anchor:',

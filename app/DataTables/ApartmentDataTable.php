@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Apartment;
 use Yajra\DataTables\Services\DataTable;
 
-class AdminDataTable extends DataTable
+class ApartmentDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -17,24 +17,16 @@ class AdminDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($one){
-                $menu = '<a href="'.route('admin.manage', $one->id).'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
-                if($one->active) {
-                    $menu .= '<a href="' . route('admin.suspend.unsuspend', $one->id) . '" title="Suspend"><i class="zmdi zmdi-close-circle-o text-danger"></i></a>';
-                }
-                else{
-                    $menu .= '<a href="' . route('admin.suspend.unsuspend', $one->id) . '" title="Re-Activate"><i class="zmdi zmdi-check-circle text-success"></i></a>';
-                }
+                $menu = '<a href='. route('apartment.table',$one->id).' title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
+
                 return $menu;
-            })
-            ->editColumn('role', function($one){
-                return User::getRoles()[$one->role];
             })
             ->setRowClass(function($one){
                 if(request()->route()->parameter('id') == $one->id){
                     return 'text-warning';
                 }
                 if(!$one->active){
-                    return 'text-danger';
+                    return 'text-primary';
                 }
             });
     }
@@ -42,14 +34,16 @@ class AdminDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\Boat $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Apartment $model)
     {
         return $model->newQuery()->select([
-            'users.id','users.name', 'active', 'role'
-        ]);
+            'apartments.id','apartments.name','apartments.location', 'apartments.state','apartments.address','apartments.type','users.name as landlord'
+        ])
+            ->leftJoin('users', 'apartments.owner_id', 'users.id');
+        // ->where('role', '!=', User::$SYSTEM_ADMIN_ROLE);
     }
 
     /**
@@ -60,11 +54,11 @@ class AdminDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->removeColumn('id')
-                    ->minifiedAjax()
-                    ->addAction(['width' => '10px'])
-                    ->parameters($this->getBuilderParameters());
+            ->columns($this->getColumns())
+            ->removeColumn('id')
+            ->minifiedAjax()
+            ->addAction(['width' => '10px'])
+            ->parameters($this->getBuilderParameters());
     }
 
     /**
@@ -77,7 +71,11 @@ class AdminDataTable extends DataTable
         return [
             'id',
             'name',
-            'role'
+            'landlord',
+            'location',
+            'state',
+            'address',
+            'type'
         ];
     }
 
@@ -88,6 +86,6 @@ class AdminDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Admin_' . date('YmdHis');
+        return 'Apartment_' . date('YmdHis');
     }
 }

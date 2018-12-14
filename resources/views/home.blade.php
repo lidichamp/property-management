@@ -1,6 +1,6 @@
 @extends('layouts.common.dashboard')
     @section('body')
-        
+
         <div class="col-sm-12">
             <div class="card widget-visitors">
                 <div class="card-header pull-right">
@@ -23,12 +23,12 @@
             </div>
         </div>
 
-          
+
         <div class="col-sm-12">
             <div class="card widget-visitors">
                 <div class="card-header pull-right">
                     <div class="card-title pull-right">
-                        
+
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
 @push('styles')
     {{--<link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />--}}
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-   
+
 @endpush
 @push('scripts_header')
     {{--<script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>--}}

@@ -13,5 +13,5 @@ return [
     'pdms' => env('ENABLE_PDMS', true),
     'module_project' => env('MODULE_PROJECT', false),
     'module_asset' => env('MODULE_ASSET', false),
-    'module_people' => env('MODULE_PEOPLE', false),
+    'module_people' => env('MODULE_PEOPLE', true),
 ];

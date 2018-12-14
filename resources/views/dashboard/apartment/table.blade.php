@@ -1,24 +1,14 @@
-@extends( 'dashboard.admin.layout' );
-
+@extends('dashboard.apartment.layout')
     @section('sub-body')
         <div class="row">
-		<div class="col-sm-1">
-		</div>
+             
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Manage User</h2>
-                        <small class="card-subtitle"></small>
-                    </div>
-
                     <div class="card-block">
-
                         <div class="table-responsive">
                             {!! $dataTable->table() !!}
                         </div>
                     </div>
-                </div>
-            </div>
                 </div>
             </div>
         </div>

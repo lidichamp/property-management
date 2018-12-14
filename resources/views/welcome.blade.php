@@ -1,7 +1,7 @@
 @extends('layouts.app')
     @section('content')
         <div class="login"
-             style='background: url("{{ asset('img/assets/roadzoft-bg.jpg') }}") no-repeat; background-size: 100%;'>
+             style='background: url("{{ asset('roadzoft-bg.jpg') }}") no-repeat; background-size: 100%;'>
             <!-- Login -->
             <div class="login__block active" style="max-width:430px;" id="l-login">
                 <div class="login__block__header">

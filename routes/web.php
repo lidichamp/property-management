@@ -39,71 +39,33 @@ Route::group([
         Route::post('/password/change/save', 'Dashboard\ProfileController@update_change_password')->name('profile.password.change.save');
     });
 	 Route::group([
-        'prefix'=>'boat',
+        'prefix'=>'apartment',
     ], function(){
-        Route::get('/home', 'Dashboard\BoatsController@index')->name('boat.home');
-        Route::get('/manage/{id?}', 'Dashboard\BoatsController@manage')->name('boat.manage');
-        Route::post('/add_update/{id?}', 'Dashboard\BoatsController@boat_save')->name('boat.save');
-		Route::get('/table','Dashboard\BoatsController@table')->name('boat.table');
-		 Route::get('/activate_deactivate/{id}', 'Dashboard\BoatsController@activate_deactivate')->name('boat.activate_deactivate');
+        Route::get('/home', 'ApartmentController@index')->name('apartment.home');
+//        Route::get('/manage/{id?}', 'ApartmentController@manage')->name('apartment.manage');
+        Route::post('/add_update/{id?}', 'ApartmentController@apartment_save')->name('apartment.save');
+		Route::get('/table/{id?}','ApartmentController@table')->name('apartment.table');
+//		 Route::get('/activate_deactivate/{id}', 'ApartmentController@activate_deactivate')->name('apartment.activate_deactivate');
       
     });
 	 Route::group([
-        'prefix'=>'jetty',
+        'prefix'=>'unit',
     ], function(){
-        Route::get('/home', 'Dashboard\JettysController@index')->name('jetty.home');
-        Route::get('/manage/{id?}', 'Dashboard\JettysController@manage')->name('jetty.manage');
-        Route::post('/add_update/{id?}', 'Dashboard\JettysController@jetty_save')->name('jetty.save');
-    });
+	     Route::get('/home', 'UnitController@index')->name('unit.home');
+//         Route::get('/manage/{id?}', 'UnitController@manage')->name('unit.manage');
+         Route::post('/add_update/{id?}', 'UnitController@unit_save')->name('unit.save');
+         Route::get('/table/{id?}','UnitController@table')->name('unit.table');
+		 Route::get('/activate_deactivate/{id}', 'UnitController@activate_deactivate')->name('unit.activate_deactivate');
+
+     });
 	
-	 Route::group([
-        'prefix'=>'trip',
-    ], function(){
-        Route::get('/create/{id}/{trip_id?}', 'Dashboard\TripController@index')->name('trip.home');
-        Route::get('/manage/{id}', 'Dashboard\TripController@manage')->name('trip.overview');
-        Route::post('/add_update/{id?}', 'Dashboard\TripController@createtrip_process')->name('trip.manage');
-		Route::get('/status_started/{id?}', 'Dashboard\TripController@starttrip')->name('trip.start');
-		Route::get('/status_completed/{id?}', 'Dashboard\TripController@endtrip')->name('trip.complete');
-		Route::get('/status_cancelled/{id?}', 'Dashboard\TripController@add_boat')->name('trip.cancel');
-		Route::get('/status_failed/{id?}', 'Dashboard\TripController@add_boat')->name('trip.fail');
-		Route::get('/view/{id}/{trip_id}', 'Dashboard\TripController@view_trip')->name('trip.view');
-		Route::get('/passenger/{id}/{trip_id}', 'Dashboard\TripController@show_manifest')->name('trip.passenger');
-		Route::post('/passenger/save/{trip_id}', 'Dashboard\TripController@add_manifest')->name('trip.passenger.save');
-		
-    });
-	 Route::group([
-        'prefix'=>'rider',
-    ], function(){
-        Route::get('/create/{id?}', 'Dashboard\PassengerController@rider_index')->name('rider.home');
-		Route::post('/add_update/{id?}', 'Dashboard\PassengerController@save_rider')->name('rider.add_update');
-		Route::get('/manage', 'Dashboard\PassengerController@manage')->name('rider.manage');
-    });
-			 Route::group([
-        'prefix'=>'route',
-    ], function(){
-        Route::get('/create/{id?}', 'Dashboard\RouteController@index')->name('route.home');
-		Route::post('/add_update/{id?}', 'Dashboard\RouteController@add_update')->name('route.add_update');
-		Route::get('/manage', 'Dashboard\RouteController@manage')->name('route.manage');
-		Route::get('manage/assign_operator/{id}', 'Dashboard\RouteController@assign_operator')->name('route.operator');
-		Route::post('/save_operator', 'Dashboard\RouteController@save_operator')->name('route.save.operator');
-    });
-	 Route::group([
-        'prefix'=>'operator',
-    ], function(){
-        Route::get('/home', 'Dashboard\OperatorsController@index')->name('operator.home');
-        Route::get('/manage/{id?}', 'Dashboard\OperatorsController@manage')->name('operator.manage');
-        Route::get('/activate_deactivate/{id}', 'Dashboard\OperatorsController@activate_deactivate')->name('operator.activate_deactivate');
-        Route::get('/administration/{id}', 'Dashboard\OperatorsController@dashboard')->name('operator.dashboard');
-        Route::get('/manage_boat/{id}/{boat_id?}', 'Dashboard\OperatorsController@manage_boat')->name('operator.assign.boat');
-        Route::post('/add_update_boat/{id?}', 'Dashboard\OperatorsController@add_boat')->name('operator.add.boat');
-        Route::post('/add_update/{id?}', 'Dashboard\OperatorsController@operator_save')->name('operator.save');
-		Route::get('/renew/{id}', 'Dashboard\OperatorsController@renew')->name('operator.renew');
-    });
+
     Route::group([
         'prefix'=>'users',
     ], function(){
         Route::get('/home', 'Dashboard\AdminController@index')->name('admin.home');
-        Route::get('/manage/{id}/{user_id?}', 'Dashboard\AdminController@manage')->name('admin.manage');
+        Route::get('/add/{user_id?}', 'Dashboard\AdminController@add')->name('admin.add');
+        Route::get('/manage/{user_id?}', 'Dashboard\AdminController@manage')->name('admin.manage');
         Route::post('/invite_update/{id?}', 'Dashboard\AdminController@invite_update')->name('admin.invite.update');
         Route::get('/manage/suspend-unsuspend/{id}', 'Dashboard\AdminController@suspend_unsuspend')->name('admin.suspend.unsuspend');
     });
