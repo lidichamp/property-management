@@ -68,6 +68,9 @@
                         <label>Income Range</label>
                         <i class="form-group__bar"></i>
                     </div>
+                    <div class="card-block center-block text-center align-content-center">
+                        <input type="submit" value="Apply" class="btn btn-default waves-effect" />
+                    </div>
                     {!! Form::close() !!}
                 </div>
             </div>
