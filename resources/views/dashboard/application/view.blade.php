@@ -1,6 +1,7 @@
-@extends('dashboard.applications.layout' )
-@section('sub-body')
-    <div class="row">
+@extends('layouts.app' )
+@section('content')
+    <div class="login"
+         style='background: url("{{ asset('roadzoft-bg.jpg') }}") no-repeat; background-size: 100%;'>
 
         <div class="col-sm-12">
             <div class="card">

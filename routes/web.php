@@ -17,8 +17,9 @@ Route::get('/', function () {
     ]);
 })->middleware('guest')->name('home.login');
 
+Route::get('/view','ApplicationController@publicunit')->middleware('guest')->name('unit.public');
 Route::get('/apply', 'ApplicationController@show')->middleware('guest')->name('application.apply');
-Route::get('/table/{id?}','ApplicationController@table')->middleware('guest')->name('application.table');
+//Route::get('/table/{id?}','ApplicationController@table')->middleware('guest')->name('application.table');
 Auth::routes();
 
 Route::group([
@@ -56,7 +57,7 @@ Route::group([
 	     Route::get('/home', 'UnitController@index')->name('unit.home');
 //         Route::get('/manage/{id?}', 'UnitController@manage')->name('unit.manage');
          Route::post('/add_update/{id?}', 'UnitController@unit_save')->name('unit.save');
-         Route::get('/table/{id?}','UnitController@table')->name('unit.table');
+        Route::get('/table','UnitController@table')->name('unit.table');
 		 Route::get('/activate_deactivate/{id}', 'UnitController@activate_deactivate')->name('unit.activate_deactivate');
 
      });
@@ -79,6 +80,7 @@ Route::group([
         Route::get('/home', 'ApplicationController@index')->name('application.home');
         Route::post('/add_update/{id?}', 'ApplicationController@apartment_save')->name('application.save');
 
+        Route::get('/table/{id?}','ApplicationController@table')->name('application.table');
 //		 Route::get('/activate_deactivate/{id}', 'ApartmentController@activate_deactivate')->name('apartment.activate_deactivate');
 
     });

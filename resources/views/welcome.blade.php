@@ -7,7 +7,7 @@
                 <div class="login__block__header">
                     <i class="zmdi zmdi-account-circle"></i>
                     Have an account? Sign in OR <br/>
-                    <a href="{{route('application.table')}}" style="color: white">Click here to see apartments</a>
+                    <a href="{{route('unit.public')}}" style="color: white">Click here to see apartments</a>
 
                     <div class="actions actions--inverse login__block__actions">
                         <div class="dropdown">

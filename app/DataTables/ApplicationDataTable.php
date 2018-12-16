@@ -15,12 +15,7 @@ class ApplicationDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables($query)
-            ->addColumn('action', function($one){
-                $menu = '<a href="'.route('application.apply').'" title="Apply" style="margin-right: 10px"><i class="zmdi zmdi-check-circle"></i></a>';
-
-                return $menu;
-            });
+        return datatables($query);
     }
 
     /**
@@ -49,7 +44,7 @@ class ApplicationDataTable extends DataTable
             ->columns($this->getColumns())
             ->removeColumn('id')
             ->minifiedAjax()
-            ->addAction(['width' => '10px'])
+//            ->addAction(['width' => '10px'])
             ->parameters($this->getBuilderParameters());
     }
 

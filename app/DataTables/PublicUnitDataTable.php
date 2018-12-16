@@ -5,7 +5,7 @@ namespace App\DataTables;
 use App\Unit;
 use Yajra\DataTables\Services\DataTable;
 
-class UnitDataTable extends DataTable
+class PublicUnitDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -17,18 +17,7 @@ class UnitDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($one){
-             $menu = '<a href="'.route('application.apply').'" title="Apply" style="margin-right: 10px"><i class="zmdi zmdi-check-circle"></i></a>';
-             $menu .= '<a href="/manage'.'/'.$one->id.'" title="Edit" style="margin-right: 10px"><i class="zmdi zmdi-edit"></i></a>';
-				if($one->occupied==0)
-                                {
-                                    $menu .= '<a href="'.route('unit.activate_deactivate', $one->id).'" title="Occupy" style="margin-right: 10px"><i class="zmdi zmdi-check text-danger"></i></a>';
-
-                                }
-                                if($one->occupied==1)
-                                {
-                                    $menu .= '<a href="'.route('unit.activate_deactivate', $one->id).'" title="Unoccupy" style="margin-right: 10px"><i class="zmdi zmdi-close text-success"></i></a>';
-
-                                }
+                $menu = '<a href="'.route('application.apply').'" title="Apply" style="margin-right: 10px"><i class="zmdi zmdi-check-circle"></i></a>';
                 return $menu;
             })
             ->setRowClass(function($one){
@@ -53,8 +42,9 @@ class UnitDataTable extends DataTable
             'units.id','units.name','units.occupied', 'units.rental_amount','units.contact','units.security_deposit','apartments.name as apartment','users.name as landlord','apartments.address','apartments.state'
         ])
 
-		->leftJoin('apartments', 'units.apartment_id', 'apartments.id')
-		->leftJoin('users', 'apartments.owner_id', 'users.id');
+            ->leftJoin('apartments', 'units.apartment_id', 'apartments.id')
+            ->leftJoin('users', 'apartments.owner_id', 'users.id')
+            ->where('units.occupied',0);
     }
 
     /**
@@ -65,11 +55,11 @@ class UnitDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->removeColumn('id')
-                    ->minifiedAjax()
-                    ->addAction(['width' => '10px'])
-                    ->parameters($this->getBuilderParameters());
+            ->columns($this->getColumns())
+            ->removeColumn('id')
+            ->minifiedAjax()
+            ->addAction(['width' => '10px'])
+            ->parameters($this->getBuilderParameters());
     }
 
     /**
@@ -82,13 +72,13 @@ class UnitDataTable extends DataTable
         return [
             'id',
             'name',
-			'rental_amount',
-			'contact',
-			'state',
+            'rental_amount',
+            'contact',
+            'state',
             'landlord',
             'apartment',
-			'address',
-			'security_deposit'
+            'address',
+            'security_deposit'
         ];
     }
 

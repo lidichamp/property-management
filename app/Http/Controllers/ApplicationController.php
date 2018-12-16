@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PublicUnitDataTable;
 use Illuminate\Http\Request;
 use App\Application;
 use DB;
@@ -51,7 +52,14 @@ class ApplicationController extends Controller
             'boat'=> $id?Application::find($id):null
         ]);
     }
-
+    public function publicunit(PublicUnitDataTable $dataTable){
+        if (request()->ajax()) {
+            return $dataTable->ajax();
+        }
+        return $dataTable->render('dashboard.application.view', [
+            'page_title'=>'Application Management'
+        ]);
+    }
     public function show(){
         return view('dashboard.application.add');
     }
