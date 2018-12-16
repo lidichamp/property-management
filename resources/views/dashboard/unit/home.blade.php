@@ -17,11 +17,12 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-md-3">
             <div class="quick-stats__item bg-deep-orange">
                 <div class="quick-stats__info">
-                    <h2>{{ \App\User::where('active', 0)->where('role', 0)->count() }}</h2>
-                    <small>Inactive Landords</small>
+                    <h2>{{ \App\Application::count() }}</h2>
+                    <small>Applications</small>
                 </div>
             </div>
         </div>

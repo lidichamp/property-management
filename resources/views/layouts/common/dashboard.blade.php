@@ -143,7 +143,7 @@
 				@endif
                    <li class="nav-item {{ str_contains(request()->path(), 'unit')?'active':'' }}"><a class="nav-link" href="{{ route('unit.home') }}">Units</a></li>
                    <li class="nav-item {{ str_contains(request()->path(), 'apartment')?'active':'' }}"><a class="nav-link" href="{{ route('apartment.home') }}">Apartments</a></li>
-				           {{--<li class="nav-item {{ str_contains(request()->path(), 'dashboard/rider')?'active':'' }}"><a class="nav-link" href="{{ route('rider.home') }}">Tenants</a></li>--}}
+				           <li class="nav-item {{ str_contains(request()->path(), 'dashboard/application')?'active':'' }}"><a class="nav-link" href="{{ route('application.home') }}">Applications</a></li>
 				   {{--<li class="nav-item {{ str_contains(request()->path(), 'dashboard/route')?'active':'' }}"><a class="nav-link" href="{{ route('route.home') }}">Rents</a></li>--}}
 
                 </ul>

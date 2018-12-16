@@ -17,6 +17,8 @@ Route::get('/', function () {
     ]);
 })->middleware('guest')->name('home.login');
 
+Route::get('/apply', 'ApplicationController@show')->middleware('guest')->name('application.apply');
+Route::get('/table/{id?}','ApplicationController@table')->middleware('guest')->name('application.table');
 Auth::routes();
 
 Route::group([
@@ -70,7 +72,15 @@ Route::group([
         Route::get('/manage/suspend-unsuspend/{id}', 'Dashboard\AdminController@suspend_unsuspend')->name('admin.suspend.unsuspend');
     });
 
- 
 
+    Route::group([
+        'prefix'=>'application',
+    ], function(){
+        Route::get('/home', 'ApplicationController@index')->name('application.home');
+        Route::post('/add_update/{id?}', 'ApplicationController@apartment_save')->name('application.save');
+
+//		 Route::get('/activate_deactivate/{id}', 'ApartmentController@activate_deactivate')->name('apartment.activate_deactivate');
+
+    });
 });
 

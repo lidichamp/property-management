@@ -1,4 +1,4 @@
-@extends('dashboard.apartment.layout')
+@extends('dashboard.application.layout')
 @section('sub-body')
     <div class="row quick-stats">
         <div class="col-sm-6 col-md-3">
@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-md-3">
             <div class="quick-stats__item bg-deep-orange">
                 <div class="quick-stats__info">
@@ -34,15 +35,15 @@
             </div>
         </div>
     </div>
-	  <div class="col-sm-12">
-	<div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            		{!! Charts::assets() !!}
+    <div class="col-sm-12">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-sm-12">
+                    {!! Charts::assets() !!}
                     {!! $chart->render() !!}
-                        </div>
-                    </div>
                 </div>
-				</div>
+            </div>
+        </div>
+    </div>
 @endsection
- {!! $chart->script() !!}
+{!! $chart->script() !!}

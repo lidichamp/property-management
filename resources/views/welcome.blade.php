@@ -6,7 +6,8 @@
             <div class="login__block active" style="max-width:430px;" id="l-login">
                 <div class="login__block__header">
                     <i class="zmdi zmdi-account-circle"></i>
-                    Hi there! Please Sign in
+                    Have an account? Sign in OR <br/>
+                    <a href="{{route('application.table')}}" style="color: white">Click here to see apartments</a>
 
                     <div class="actions actions--inverse login__block__actions">
                         <div class="dropdown">

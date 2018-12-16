@@ -13,4 +13,9 @@ class Unit extends Model
     public function apartment(){
         return $this->hasOne('App\Apartment', 'id', 'apartment_id');
     }
+    public static function getUnits(){
+        $users=Unit::all()->pluck('name','id')->toArray();
+
+        return $users;
+    }
 }
