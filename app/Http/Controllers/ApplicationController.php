@@ -78,6 +78,6 @@ class ApplicationController extends Controller
             Application::create($validatedData);
 
 
-        return redirect(route('application.table'))->withInput(['success'=>true]);
+        return redirect()->back()->withInput(['success'=>true]);
     }
 }

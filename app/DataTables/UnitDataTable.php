@@ -35,7 +35,10 @@ class UnitDataTable extends DataTable
                 if(request()->route()->parameter('id') == $one->id){
                     return 'text-warning';
                 }
-                if(!$one->active){
+                if(!$one->occupied){
+                    return 'text-success';
+
+                if($one->occupied){
                     return 'text-danger';
                 }
             });

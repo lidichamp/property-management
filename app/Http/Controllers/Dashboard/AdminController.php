@@ -77,8 +77,8 @@ class AdminController extends Controller
         }
         else {
             $user = $this->create($validatedData);
-            event(new Registered($user));
-            $user->notify(new AdminInvite($validatedData['password']));
+//            event(new Registered($user));
+//            $user->notify(new AdminInvite($validatedData['password']));
         }
 
         return back()->withInput(['success'=>true]);
