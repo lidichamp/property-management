@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/view','ApplicationController@publicunit')->middleware('guest')->name('unit.public');
 Route::get('/apply', 'ApplicationController@show')->middleware('guest')->name('application.apply');
-Route::post('/add_update/{id?}', 'ApplicationController@apartment_save')->middleware('guest')->name('application.save');
+Route::post('/add_update/{id?}', 'ApplicationController@application_save')->middleware('guest')->name('application.save');
 //Route::get('/table/{id?}','ApplicationController@table')->middleware('guest')->name('application.table');
 Auth::routes();
 
