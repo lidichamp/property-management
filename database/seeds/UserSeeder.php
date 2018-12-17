@@ -13,12 +13,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Maxwell Obinna',
-            'email' => 'max.obinna@gmail.com',
+            'name' => 'Hafeez Gbenle',
+            'email' => 'abdulhaphyz@gmail.com',
             'password' => bcrypt('alwaysalert'),
             'role' => 1,
-			'home_jetty'=>'f58054a6-f6f6-4ba0-9098-2e29e6de4951',
-			'operator'=>'ce3a5cc5-3e36-43bf-bf72-99f4d7ce131c'
+//			'home_jetty'=>'f58054a6-f6f6-4ba0-9098-2e29e6de4951',
+//			'operator'=>'ce3a5cc5-3e36-43bf-bf72-99f4d7ce131c'
         ]);
     }
 }
