@@ -46,7 +46,7 @@
                         {!! Form::select('role', \App\User::getRoles(), $user?$user->role:null, ['class'=>'select2']) !!}
                         <i class="form-group__bar"></i>
                     </div>
-                    {!! Form::hidden('operator',\App\Operator::find(request()->route('id')) ) !!}
+                    {{--{!! Form::hidden('operator',\App\Operator::find(request()->route('id')) ) !!}--}}
 
                     @if(!$user)
                         <div class="form-group form-group--float">

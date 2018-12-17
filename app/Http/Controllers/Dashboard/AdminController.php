@@ -16,21 +16,21 @@ use Illuminate\Auth\Events\Registered;
 
 class AdminController extends Controller
 {
-    public function index(Request $request){
-		$values = User::select('jetties.name as jetty', DB::raw('count(home_jetty) AS users'))
-		->leftJoin('jetties', 'users.home_jetty', 'jetties.id')
-		->groupBy('home_jetty')
-		->get();
-		$chart = Charts::create('bar', 'highcharts')
-        ->title('Jetty Users')
-        ->elementLabel('People')
-        ->labels($values->pluck('jetty'))
-        ->values($values->pluck('users'))
-        ->responsive(false);
-        return view('dashboard.admin.home', [
-            'page_title'=>'Admin Users','chart'=>$chart
-        ]);
-    }
+//    public function index(Request $request){
+//		$values = User::select('jetties.name as jetty', DB::raw('count(home_jetty) AS users'))
+//		->leftJoin('jetties', 'users.home_jetty', 'jetties.id')
+//		->groupBy('home_jetty')
+//		->get();
+//		$chart = Charts::create('bar', 'highcharts')
+//        ->title('Jetty Users')
+//        ->elementLabel('People')
+//        ->labels($values->pluck('jetty'))
+//        ->values($values->pluck('users'))
+//        ->responsive(false);
+//        return view('dashboard.admin.home', [
+//            'page_title'=>'Admin Users','chart'=>$chart
+//        ]);
+//    }
 
     public function add(AdminDataTable $dataTable, $user_id=null){
 //        dd(request()->route()->parameter('id'));
@@ -62,8 +62,8 @@ class AdminController extends Controller
             'email' => 'required|email|max:255'.$email_validation_append,
             'password' => $id?'nullable':'required|string|min:6|confirmed',
             'role'=> 'required|integer|not_in:1',
-			'operator'=> 'required|exists:operators,id',
-            'home_jetty'=> 'nullable|exists:jetties,id'
+//			'operator'=> 'required|exists:operators,id',
+//            'home_jetty'=> 'nullable|exists:jetties,id'
         ]);
 
         if($id){
@@ -100,8 +100,8 @@ class AdminController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role' => $data['role'],
-			'operator'=>$data['operator'],
-            'home_jetty' => $data['home_jetty']
+//			'operator'=>$data['operator'],
+//            'home_jetty' => $data['home_jetty']
         ]);
     }
 }

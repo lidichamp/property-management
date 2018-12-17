@@ -1,4 +1,4 @@
-@extends('dashboard.applications.layout' )
+@extends('dashboard.application.layout' )
 @section('sub-body')
     <div class="row">
 
