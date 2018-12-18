@@ -37,7 +37,7 @@ class UnitDataTable extends DataTable
                 }
                 if(!$one->occupied){
                     return 'text-success';
-
+                }
                 if($one->occupied){
                     return 'text-danger';
                 }
